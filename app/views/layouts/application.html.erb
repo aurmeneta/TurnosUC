@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style> body {background-image: url("<%= asset_path('fondo.png') %>");} 
+    </style>
   </head>
 
   <body>
@@ -20,7 +22,7 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+    <hr>
     <%= yield %>
   </body>
 </html>
