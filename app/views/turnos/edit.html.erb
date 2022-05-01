@@ -1,9 +1,9 @@
-<h1>Crear turno</h1>
+<h1>Editar turno <%= @turno.id %></h1>
 
-<%= form_with action: 'create' do |f| %>
+<%= form_with model: @turno, action: 'update' do |f| %>
 
 
-    <%= f.label :día %>
+    <%= f.label :día%>
     <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
 
     <br/>
@@ -28,5 +28,5 @@
     <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
     
     <br/>
-    <%= f.submit "Crear turno" %>
+    <%= f.submit "Guardar turno" %>
 <% end %>

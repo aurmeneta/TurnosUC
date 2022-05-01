@@ -1,1 +1,12 @@
 <h1><%= @turno.id %></h1>
+
+Dia: <%= @turno.dia %> <br/>
+Dirección salida: <%= @turno.direccion_salida %> <br/>
+Hora salida: <%= @turno.hora_salida %> <br/>
+Tipo: <%= @turno.tipo %> <br/>
+Cupos: <%= @turno.cupos %> <br/>
+Campus: <%= @turno.campus %> <br/>
+
+<%= link_to "Eliminar turno", @turno, method: :delete %>
+<%= link_to "Editar turno", edit_turno_path(@turno)%>
+<%= link_to "Volver", root_path %>

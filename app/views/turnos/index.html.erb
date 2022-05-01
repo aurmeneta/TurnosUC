@@ -1,1 +1,9 @@
 <h1>Turnos</h1>
+
+<ul>
+    <% @turnos.each do |turno| %>
+        <li><%= link_to "Turno #{turno.id} a #{turno.campus}", turno_path(turno.id) %></li>
+    <% end %>
+</ul>
+
+<%= link_to "Crear turno", new_turno_path %>
