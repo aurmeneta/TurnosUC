@@ -1,0 +1,44 @@
+<h1>Crear turno</h1>
+
+<% if @turno.present? %>
+    <div>
+        <ul>
+            <% @turno.errors.each do |error|%>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<p><%= @turno.present? %></p>
+
+<%= form_with action: 'create' do |f| %>
+
+
+    <%= f.label :día%>
+    <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
+
+    <br/>
+    <%= f.label :hora_salida%>
+    <%= f.time_field :hora_salida, :required => true %>
+
+    <br/>
+    <%= f.label :dirección_salida%>
+    <%= f.text_field :direccion_salida, :required => true %>
+
+    <br/>
+    <%= f.label :campus_destino%>
+    <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %>
+
+    <br/>
+    <%= f.label :tipo%>
+    <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %>
+
+
+    <br/>
+    <%= f.label :cupos%>
+    <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
+    
+    <br/>
+    <%= f.submit "Crear turno" %>
+<% end %>
