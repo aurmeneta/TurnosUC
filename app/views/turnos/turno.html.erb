@@ -1,0 +1,25 @@
+<div style="background-color: #71a9c0; width:250px; height:80px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<h1 style="font-family:Cambria;">Turno <%= @turno.id %></h1>
+</div>
+
+<div style="background-color: #71a9c0; width:300px; height:110px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+Día: <%= @turno.dia %> <br/>
+Dirección salida: <%= @turno.direccion_salida %> <br/>
+Hora salida: <%= @turno.hora_salida %> <br/>
+Tipo: <%= @turno.tipo %> <br/>
+Cupos: <%= @turno.cupos %> <br/>
+Campus: <%= @turno.campus %> <br/>
+</div>
+
+<hr>
+<div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<%= link_to "Eliminar turno", @turno, method: :delete %>
+</div>
+
+<div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<%= link_to "Editar turno", edit_turno_path(@turno)%>
+</div>
+
+<div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<%= link_to "Volver", show_turns_path %>
+</div>

@@ -1,0 +1,40 @@
+<div style="background-color: #71a9c0; width:250px; height:80px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<h1 style="font-family:Cambria;">Editar turno <%= @turno.id %></h1>
+</div>
+
+<div style="background-color: #71a9c0; width:300px; height:150px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<%= form_with model: @turno, action: 'update' do |f| %>
+
+
+    <%= f.label :día%>
+    <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
+
+    <br/>
+    <%= f.label :hora_salida%>
+    <%= f.time_field :hora_salida, :required => true %>
+
+    <br/>
+    <%= f.label :dirección_salida%>
+    <%= f.text_field :direccion_salida, :required => true %>
+
+    <br/>
+    <%= f.label :campus_destino%>
+    <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %>
+
+    <br/>
+    <%= f.label :tipo%>
+    <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %>
+
+
+    <br/>
+    <%= f.label :cupos%>
+    <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
+    
+    <br/>
+    <%= f.submit "Guardar turno" %>
+<% end %>
+</div>
+
+<div style="background-color: #71a9c0; width:80px; height:30px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<%= link_to "Volver", show_turns_path %>
+</div>
