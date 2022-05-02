@@ -1,5 +1,8 @@
-<h2>Log in</h2>
+<div style="background-color: #71a9c0; width:300px; height:80px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+  <h1 style="font-family:Cambria;">Log in</h1>
+</div>
 
+<div style="background-color: #71a9c0; width:300px; height:140px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -22,5 +25,12 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+
+</div>
+
+<div style="background-color: #71a9c0; width:80px; height:30px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<%= link_to "Volver", root_path %>
+</div>
+
 
 <%= render "usuarios/shared/links" %>

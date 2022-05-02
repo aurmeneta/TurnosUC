@@ -1,5 +1,8 @@
-<h2>Change your password</h2>
+<div style="background-color: #71a9c0; width:300px; height:80px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+  <h1 style="font-family:Cambria;">Change your password</h1>
+</div>
 
+<div style="background-color: #71a9c0; width:300px; height:120px;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "usuarios/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
@@ -21,5 +24,6 @@
     <%= f.submit "Change my password" %>
   </div>
 <% end %>
+</div>
 
 <%= render "usuarios/shared/links" %>

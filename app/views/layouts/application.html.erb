@@ -7,17 +7,24 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style> body {background-image: url("<%= asset_path('fondo.png') %>");} 
+    <style> body {background-image: url("<%= asset_path('fondo.png') %>");
+                  background-size: cover;} 
     </style>
   </head>
 
   <body>
 
     <% if current_usuario %>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px;">
       <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete %>
+      </div>
     <% else %>
-      <%= link_to "Iniciar Sesión", new_usuario_session_path %>
-      <%= link_to "Registrarme", new_usuario_registration_path %>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px; margin:left;">
+        <%= link_to "Iniciar Sesión", new_usuario_session_path, {:style=>'font-family:Cambria;'}%>
+      </div>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px; margin:left;">
+        <%= link_to "Registrarme", new_usuario_registration_path, {:style=>'font-family:Cambria;'} %>
+      </div>
     <% end %>
 
     <p class="notice"><%= notice %></p>
