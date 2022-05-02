@@ -13,6 +13,7 @@ Solicitudes:
     <% @turno.solicitud.each do |solicitud| %>
         <li><%= "Solicitud #{solicitud.id} | Estado: #{solicitud.descripcion}" %></li>
         <%= link_to "Gestionar solicitud", edit_solicitud_path(solicitud) %>
+        <%= link_to "Eliminar solicitud", solicitud, method: :delete %>
     <% end %>
 </ul>
 

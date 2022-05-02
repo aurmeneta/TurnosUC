@@ -29,6 +29,7 @@ class SolicitudsController < ApplicationController
     redirect_to Solicitud.find(params[:id])
   end
 
+
   private
     def solicitud_params
       params.require(:solicitud)
