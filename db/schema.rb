@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2022_05_02_031145) do
 
-ActiveRecord::Schema.define(version: 2022_05_02_024300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "solicituds", force: :cascade do |t|
-    t.string "descripcion"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "turnos", force: :cascade do |t|
     t.string "dia"
@@ -30,6 +24,8 @@ ActiveRecord::Schema.define(version: 2022_05_02_024300) do
     t.string "campus"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "usuario_id"
+    t.index ["usuario_id"], name: "index_turnos_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -49,4 +45,5 @@ ActiveRecord::Schema.define(version: 2022_05_02_024300) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "turnos", "usuarios"
 end

@@ -1,4 +1,5 @@
 class Turno < ApplicationRecord
+    belongs_to :usuario
 
     def initialize hash
         super hash
