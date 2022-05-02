@@ -21,4 +21,15 @@ ActiveRecord::Schema.define(version: 2022_05_01_231044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "turnos", force: :cascade do |t|
+    t.string "dia"
+    t.string "direccion_salida"
+    t.time "hora_salida"
+    t.string "tipo"
+    t.integer "cupos"
+    t.string "campus"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
 end
