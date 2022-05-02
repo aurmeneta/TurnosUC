@@ -7,6 +7,17 @@ Tipo: <%= @turno.tipo %> <br/>
 Cupos: <%= @turno.cupos %> <br/>
 Campus: <%= @turno.campus %> <br/>
 
+
+Solicitudes:
+<ul>
+    <% @turno.solicitud.each do |solicitud| %>
+        <li><%= "Solicitud #{solicitud.id} | Estado: #{solicitud.descripcion}" %></li>
+        <%= link_to "Gestionar solicitud", edit_solicitud_path(solicitud) %>
+    <% end %>
+</ul>
+
+
+
 <%= link_to "Eliminar turno", @turno, method: :delete %>
 <%= link_to "Editar turno", edit_turno_path(@turno)%>
 <%= link_to "Volver", root_path %>

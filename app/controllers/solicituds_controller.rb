@@ -4,12 +4,12 @@ class SolicitudsController < ApplicationController
   end
 
   def create
-    @Solicitud = Solicitud.new(
+    @solicitud = Solicitud.new(
       descripcion: "pendiente",
       usuario_id: 1,
       turno_id: params[:turno_id]
     )
-    @Solicitud.save 
+    @solicitud.save 
   end
 
   def delete
@@ -17,8 +17,22 @@ class SolicitudsController < ApplicationController
   end
 
   def edit
+    @solicitud = Solicitud.find(params[:id])
   end
 
   def update
+    Solicitud.update(
+      params[:id],
+      descripcion: solicitud_params[:descripcion]
+    )
+
+    redirect_to Solicitud.find(params[:id])
   end
+
+  private
+    def solicitud_params
+      params.require(:solicitud)
+    end
+
 end
+

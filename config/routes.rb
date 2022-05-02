@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   patch 'turno/:id', to: 'turnos#update', as: :patch_turno
   get 'turno/editar/:id', to: 'turnos#edit', as: :edit_turno
   post 'solicituds/create', to: 'solicituds#create', as: :new_solicitud
+  get 'solicituds/editar/:id', to: 'solicituds#edit', as: :edit_solicitud
+  patch 'solicituds/:id', to: 'solicituds#update', as: :patch_solicitud
+
 end
+
