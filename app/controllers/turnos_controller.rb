@@ -41,21 +41,20 @@ class TurnosController < ApplicationController
         # Comprobar si editor es publicador del turno
         @turno = Turno.find(params[:id])
 
-        puts turno.usuario_id
-        puts current_usuario.id
-
         if @turno.usuario_id == current_usuario.id
 
-            @turno.update(   
+            if (@turno.update(   
                 dia: turno_params[:dia],
                 direccion_salida: turno_params[:direccion_salida],
                 hora_salida: turno_params[:hora_salida],
                 tipo: turno_params[:tipo],
                 cupos: turno_params[:cupos],
                 campus: turno_params[:campus]
-            )
-
-            redirect_to @turno, notice: "Cambios guardados"
+                ))
+                redirect_to @turno, notice: "Cambios guardados"
+            else
+                redirect_to @turno, alert: @turno.errors.full_messages
+            end
         else
             redirect_to @turno, alert: "No puedes editar este elemento"
         end

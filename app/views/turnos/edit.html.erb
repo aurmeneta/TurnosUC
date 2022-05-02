@@ -1,5 +1,11 @@
 <h1>Editar turno <%= @turno.id %></h1>
 
+<ul>
+      <% @turno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+</ul>
+
 <%= form_with model: @turno, action: 'update' do |f| %>
 
 
