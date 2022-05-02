@@ -5,8 +5,11 @@ class SolicitudsController < ApplicationController
 
   def create
     @Solicitud = Solicitud.new(
-      descripcion: params[:descripcion]
+      descripcion: "pendiente",
+      usuario_id: 1,
+      turno_id: params[:turno_id]
     )
+    @Solicitud.save 
   end
 
   def delete

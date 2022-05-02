@@ -24,6 +24,7 @@ class TurnosController < ApplicationController
 
     def turno
         @turno = Turno.find(params[:id])
+        puts(@turno.solicitud[0].id)
     end
 
     def delete

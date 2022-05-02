@@ -10,3 +10,4 @@ Campus: <%= @turno.campus %> <br/>
 <%= link_to "Eliminar turno", @turno, method: :delete %>
 <%= link_to "Editar turno", edit_turno_path(@turno)%>
 <%= link_to "Volver", root_path %>
+<%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id:@turno.id} %>
