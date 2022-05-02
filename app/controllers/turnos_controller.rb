@@ -35,6 +35,10 @@ class TurnosController < ApplicationController
 
     def edit
         @turno = Turno.find(params[:id])
+
+        if @turno.usuario_id != current_usuario.id
+            redirect_to @turno, alert: "No puedes editar este turno"
+        end
     end
 
     def update

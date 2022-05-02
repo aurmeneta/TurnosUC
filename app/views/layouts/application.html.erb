@@ -13,6 +13,8 @@
 
     <% if current_usuario %>
       <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete %>
+      <%= link_to "Ver perfil", edit_usuario_registration_path %>
+      <%= link_to "Inicio", root_path %>
     <% else %>
       <%= link_to "Iniciar Sesión", new_usuario_session_path %>
       <%= link_to "Registrarme", new_usuario_registration_path %>
