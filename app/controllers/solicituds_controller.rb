@@ -4,20 +4,32 @@ class SolicitudsController < ApplicationController
   end
 
   def create
-    @solicitud = Solicitud.new(
-      descripcion: "Pendiente",
-      usuario_id: 1,
-      turno_id: params[:turno_id]
-    )
-    @solicitud.save
 
-    redirect_to @solicitud.turno
+    turno = Turno.find(params[:turno_id])
+
+    if turno.usuario.id != current_usuario.id
+      @solicitud = Solicitud.new(
+        descripcion: "Pendiente",
+        usuario_id: current_usuario.id,
+        turno_id: turno.id
+      )
+      @solicitud.save
+      redirect_to turno
+    else
+      redirect_to turno, alert: "No puedes solicitar un cupo en tu propio turno"
+    end
   end
 
   def delete
     solicitud = Solicitud.find(params[:id])
-    solicitud.destroy
-    redirect_to solicitud.turno
+
+    if solicitud.usuario.id == current_usuario.id
+      solicitud.destroy
+      redirect_to solicitud.turno
+    else
+      redirect_to solicitud.turno, alert: "Solo puedes eliminar solicitudes tuyas"
+    end
+
   end
 
   def edit
@@ -25,24 +37,38 @@ class SolicitudsController < ApplicationController
   end
 
   def update
-    Solicitud.update(
-      params[:id],
-      descripcion: solicitud_params[:descripcion]
-    )
 
-    redirect_to Solicitud.find(params[:id]).turno
+    solicitud = Solicitud.find(params[:id])
+
+    if solicitud.turno.usuario.id == current_usuario.id
+      solicitud.update(descripcion: solicitud_params[:descripcion])
+      redirect_to solicitud.turno
+    else
+      redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes"
+    end
   end
 
   def aceptar
-    @solicitud = Solicitud.find(params[:id])
-    @solicitud.update(descripcion: "Aceptada")
-    redirect_to @solicitud.turno
+    solicitud = Solicitud.find(params[:id])
+
+    if solicitud.turno.usuario.id == current_usuario.id
+      solicitud.update(descripcion: "Aceptada")
+      redirect_to solicitud.turno
+    else
+      redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes"
+    end
   end
 
   def rechazar
-    @solicitud = Solicitud.find(params[:id])
-    @solicitud.update(descripcion: "Rechazada")
-    redirect_to @solicitud.turno
+    solicitud = Solicitud.find(params[:id])
+
+    if solicitud.turno.usuario.id == current_usuario.id
+      solicitud.update(descripcion: "Rechazada")
+      redirect_to solicitud.turno
+    else
+      redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes"
+    end
+
   end
 
 

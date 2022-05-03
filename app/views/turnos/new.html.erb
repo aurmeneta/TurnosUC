@@ -1,3 +1,4 @@
+
 <div style="background-color: #71a9c0; width:250px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
   <h1 style="font-family:Cambria;text-align:center;">Crear turno</h1>
 </div>
@@ -5,6 +6,7 @@
 <br/>
 
 <div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;margin:auto;">
+
 <%= form_with action: 'create' do |f| %>
 
 
@@ -33,6 +35,7 @@
     <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
     
     <br/>
+
     <br/>
     <%= f.submit "Crear turno" %>
 <% end %>
@@ -43,3 +46,4 @@
 <div style="background-color: #71a9c0; width:80px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
   <%= link_to "Volver", root_path %>
 </div>
+
