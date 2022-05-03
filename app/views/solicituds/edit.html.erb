@@ -1,0 +1,13 @@
+<h1>Editar solicitud <%= @solicitud.id %></h1>
+
+Turno: <%= @solicitud.turno.id %>
+
+<%= form_with model: @solicitud, action: 'update' do |f| %>
+
+
+    <%= f.label :Estado%>
+    <%= f.select :descripcion, ["Aceptada", "Rechazada", "Pendiente"], :required => true %>
+    
+    <br/>
+    <%= f.submit "Guardar solicitud" %>
+<% end %>
