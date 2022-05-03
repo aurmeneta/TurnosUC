@@ -35,9 +35,6 @@ class TurnosController < ApplicationController
         turno = Turno.find(params[:id])
 
         if turno.usuario.id == current_usuario.id
-            turno.solicituds.each do |solicitud|
-                solicitud.destroy
-            end
             turno.destroy
             redirect_to root_path
         else

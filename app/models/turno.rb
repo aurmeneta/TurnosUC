@@ -11,4 +11,11 @@ class Turno < ApplicationRecord
     validates :cupos, numericality: {only_integer: true, greater_than_or_equal_to: 1}
     validates :campus, inclusion: {in: ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"]}
 
+
+    def destroy
+        self.solicituds.each do |solicitud|
+            solicitud.destroy
+        end
+        super
+    end
 end
