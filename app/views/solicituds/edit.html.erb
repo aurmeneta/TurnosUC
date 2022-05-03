@@ -1,5 +1,7 @@
 <h1>Editar solicitud <%= @solicitud.id %></h1>
 
+Turno: <%= @solicitud.turno.id %>
+
 <%= form_with model: @solicitud, action: 'update' do |f| %>
 
 
@@ -9,4 +11,3 @@
     <br/>
     <%= f.submit "Guardar solicitud" %>
 <% end %>
-

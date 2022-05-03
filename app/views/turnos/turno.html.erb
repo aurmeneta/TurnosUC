@@ -14,6 +14,8 @@ Solicitudes:
         <li><%= "Solicitud #{solicitud.id} | Estado: #{solicitud.descripcion}" %></li>
         <%= link_to "Gestionar solicitud", edit_solicitud_path(solicitud) %>
         <%= link_to "Eliminar solicitud", solicitud, method: :delete %>
+        <%= button_to "Aceptar turno", aceptar_solicitud_path(solicitud)%>
+        <%= button_to "Rechazar turno", rechazar_solicitud_path(solicitud)%>
     <% end %>
 </ul>
 
