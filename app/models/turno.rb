@@ -1,4 +1,6 @@
 class Turno < ApplicationRecord
+    
+    has_many :solicitud
 
     def initialize hash
         super hash
