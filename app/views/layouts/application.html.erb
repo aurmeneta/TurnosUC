@@ -13,23 +13,34 @@
   </head>
 
   <body>
-
     <% if current_usuario %>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px;">
-      <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete %>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
+        <%= link_to "Inicio", root_path %>
+      </div>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
+        <%= link_to "Ver perfil", edit_usuario_registration_path %>
+      </div>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
+        <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete %>
       </div>
     <% else %>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px; margin:left;">
-        <%= link_to "Iniciar Sesión", new_usuario_session_path, {:style=>'font-family:Cambria;'}%>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;text-align:center;display: inline-block;border-radius: 15px;">
+        <%= link_to "Iniciar Sesión", new_usuario_session_path %>
       </div>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;box-shadow: 5px 5px; margin:left;">
-        <%= link_to "Registrarme", new_usuario_registration_path, {:style=>'font-family:Cambria;'} %>
+      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;text-align:center;display: inline-block;border-radius: 15px;">
+        <%= link_to "Registrarme", new_usuario_registration_path %>
       </div>
     <% end %>
 
+    <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;text-align:center;">
+       <h1 style="font-family:Cambria;font-size:70px;">Turnos UC</h1>
+    </div>
+
+    <hr>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <hr>
+
     <%= yield %>
   </body>
 </html>

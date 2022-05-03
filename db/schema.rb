@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_02_024300) do
-
+ActiveRecord::Schema.define(version: 2022_05_02_031145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "solicituds", force: :cascade do |t|
+    t.string "descripcion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "turno_id"
+    t.bigint "usuario_id"
+    t.index ["turno_id"], name: "index_solicituds_on_turno_id"
+    t.index ["usuario_id"], name: "index_solicituds_on_usuario_id"
+  end
 
   create_table "turnos", force: :cascade do |t|
     t.string "dia"
@@ -24,6 +33,8 @@ ActiveRecord::Schema.define(version: 2022_05_02_024300) do
     t.string "campus"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "usuario_id"
+    t.index ["usuario_id"], name: "index_turnos_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -32,15 +43,16 @@ ActiveRecord::Schema.define(version: 2022_05_02_024300) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "nombre"
-    t.string "imagen_perfil"
-    t.string "direccion"
-    t.string "telefono"
+    t.string "nombre", null: false
+    t.string "imagen_perfil", null: false
+    t.string "direccion", null: false
+    t.string "telefono", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
-
+  
+  add_foreign_key "turnos", "usuarios"
 end

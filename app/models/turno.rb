@@ -1,59 +1,12 @@
 class Turno < ApplicationRecord
+    belongs_to :usuario
+    has_many :solicitud
+  
+    validates :usuario, :direccion_salida, presence: true
+    validates :dia, inclusion: {in: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"]}
+    validates :hora_salida, format: {with: /[0-9]{1,2}:[0-9]{2}/}
+    validates :tipo, inclusion: {in: ["Ida", "Vuelta"]}
+    validates :cupos, numericality: {only_integer: true, greater_than_or_equal_to: 1}
+    validates :campus, inclusion: {in: ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"]}
 
-    def initialize hash
-        super hash
-        @errors = []
-    end
-
-    def save
-        @errors = []
-        parametro_invalido = false
-        
-        # Comprobar parametros
-        if self.dia.empty?
-            puts "Día inválido"
-            @errors << "Día inválido"
-            parametro_invalido = true
-        end
-
-        if self.direccion_salida.empty?
-            puts "Dirección inválida"
-            @errors << "Dirección inválida"
-            parametro_invalido = true
-        end
-
-        if !self.hora_salida
-            puts "Hora salida inválida"
-            @errors << "Hora salida inválida"
-            parametro_invalido = true
-        end
-
-        if self.tipo.empty?
-            puts "Tipo inválido"
-            @errors << "Tipo inválido"
-            parametro_invalido = true
-        end
-
-        if !self.cupos
-            puts "Cupos inválidos"
-            @errors << "Cupos inválidos"
-            parametro_invalido = true
-        end
-
-        if self.campus.empty?
-            puts "Campus inválido"
-            @errors << "Campus inválido"
-            parametro_invalido = true
-        end
-
-        if parametro_invalido
-            false
-        else
-            super
-        end
-    end
-
-    def errors
-        return @errors
-    end
 end
