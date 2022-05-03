@@ -1,5 +1,8 @@
-<h2>Registro</h2>
+<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+  <h1 style="font-family:Cambria;text-align:center;">Registro</h1>
+</div>
 
+<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;text-align:center;">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "usuarios/shared/error_messages", resource: resource %>
 
@@ -41,9 +44,18 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
 
+  <br/>
+
   <div class="actions">
     <%= f.submit "Registrarse" %>
   </div>
 <% end %>
+</div>
+
+<br/>
+
+<div style="background-color: #71a9c0; width:80px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
+  <%= link_to "Volver", root_path %>
+</div>
 
 <%= render "usuarios/shared/links" %>

@@ -1,9 +1,20 @@
-<h1>Turnos</h1>
 
-<ul>
+<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+  <h1 style="font-family:Cambria;text-align:center;">Publicaciones:</h1>
+</div>
+
+<br/>
+
+<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+  <ul>
     <% @turnos.each do |turno| %>
-        <li><%= link_to "Turno #{turno.id} a #{turno.campus}", turno_path(turno.id) %></li>
+        <li><%= link_to "Turno #{turno.id} a #{turno.campus} día #{turno.dia}", turno_path(turno.id) %></li>
     <% end %>
-</ul>
+  </ul>
+</div>
 
-<%= link_to "Crear turno", new_turno_path %>
+<br/>
+<div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
+  <%= link_to "Crear turno", new_turno_path %>
+</div>
+

@@ -18,7 +18,9 @@ class TurnosController < ApplicationController
 
         
         if @turno.save
+
             redirect_to @turno
+
         else
             render :new, status: 422
         end
@@ -26,6 +28,7 @@ class TurnosController < ApplicationController
 
     def turno
         @turno = Turno.find(params[:id])
+
     end
 
     def delete
@@ -40,6 +43,7 @@ class TurnosController < ApplicationController
         else
             redirect_to turno, alert: "Solo puedes eliminar tus propios turnos"
         end
+
     end
 
     def edit

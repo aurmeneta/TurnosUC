@@ -4,6 +4,7 @@ class SolicitudsController < ApplicationController
   end
 
   def create
+
     turno = Turno.find(params[:turno_id])
 
     if turno.usuario.id != current_usuario.id
@@ -21,12 +22,14 @@ class SolicitudsController < ApplicationController
 
   def delete
     solicitud = Solicitud.find(params[:id])
+
     if solicitud.usuario.id == current_usuario.id
       solicitud.destroy
       redirect_to solicitud.turno
     else
       redirect_to solicitud.turno, alert: "Solo puedes eliminar solicitudes tuyas"
     end
+
   end
 
   def edit
@@ -34,6 +37,7 @@ class SolicitudsController < ApplicationController
   end
 
   def update
+
     solicitud = Solicitud.find(params[:id])
 
     if solicitud.turno.usuario.id == current_usuario.id
@@ -64,6 +68,7 @@ class SolicitudsController < ApplicationController
     else
       redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes"
     end
+
   end
 
 
