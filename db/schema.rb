@@ -55,5 +55,4 @@ ActiveRecord::Schema.define(version: 2022_05_02_031145) do
   end
   
   add_foreign_key "turnos", "usuarios"
-
 end

@@ -7,4 +7,6 @@ class Usuario < ApplicationRecord
   validates :nombre, presence: true
   validates :imagen_perfil, presence: true
   validates :telefono, format: {with: /[0-9]{9}/}
+
+  has_many :turnos
 end

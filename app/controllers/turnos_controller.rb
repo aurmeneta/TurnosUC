@@ -1,4 +1,5 @@
 class TurnosController < ApplicationController
+    skip_before_action :authenticate_usuario!, only: ["index"]
 
     def index
         @turnos = Turno.all
@@ -11,7 +12,8 @@ class TurnosController < ApplicationController
             hora_salida: params[:hora_salida],
             tipo: params[:tipo],
             cupos: params[:cupos],
-            campus: params[:campus]
+            campus: params[:campus],
+            usuario_id: current_usuario.id
         )
 
         
@@ -34,20 +36,33 @@ class TurnosController < ApplicationController
 
     def edit
         @turno = Turno.find(params[:id])
+
+        if @turno.usuario_id != current_usuario.id
+            redirect_to @turno, alert: "No puedes editar este turno"
+        end
     end
 
     def update
-        Turno.update(
-            params[:id],
-            dia: turno_params[:dia],
-            direccion_salida: turno_params[:direccion_salida],
-            hora_salida: turno_params[:hora_salida],
-            tipo: turno_params[:tipo],
-            cupos: turno_params[:cupos],
-            campus: turno_params[:campus]
-        )
+        # Comprobar si editor es publicador del turno
+        @turno = Turno.find(params[:id])
 
-        redirect_to Turno.find(params[:id])
+        if @turno.usuario_id == current_usuario.id
+
+            if (@turno.update(   
+                dia: turno_params[:dia],
+                direccion_salida: turno_params[:direccion_salida],
+                hora_salida: turno_params[:hora_salida],
+                tipo: turno_params[:tipo],
+                cupos: turno_params[:cupos],
+                campus: turno_params[:campus]
+                ))
+                redirect_to @turno, notice: "Cambios guardados"
+            else
+                redirect_to @turno, alert: @turno.errors.full_messages
+            end
+        else
+            redirect_to @turno, alert: "No puedes editar este elemento"
+        end
     end
 
     private
