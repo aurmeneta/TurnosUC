@@ -9,4 +9,5 @@ class Usuario < ApplicationRecord
   validates :telefono, format: {with: /[0-9]{9}/}
 
   has_many :turnos
+  has_many :solicituds
 end

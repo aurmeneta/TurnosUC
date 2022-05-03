@@ -18,7 +18,7 @@ class TurnosController < ApplicationController
 
         
         if @turno.save
-            redirect_to "/turno/#{@turno.id}"
+            redirect_to @turno
         else
             render :new, status: 422
         end
@@ -26,12 +26,20 @@ class TurnosController < ApplicationController
 
     def turno
         @turno = Turno.find(params[:id])
-        #puts(@turno.solicitud)
     end
 
     def delete
-        Turno.find(params[:id]).destroy
-        redirect_to root_path
+        turno = Turno.find(params[:id])
+
+        if turno.usuario.id == current_usuario.id
+            turno.solicituds.each do |solicitud|
+                solicitud.destroy
+            end
+            turno.destroy
+            redirect_to root_path
+        else
+            redirect_to turno, alert: "Solo puedes eliminar tus propios turnos"
+        end
     end
 
     def edit
