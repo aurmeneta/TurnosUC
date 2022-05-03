@@ -1,6 +1,6 @@
 class Turno < ApplicationRecord
     belongs_to :usuario
-    has_many :solicitud
+    has_many :solicituds
   
     validates :usuario, :direccion_salida, presence: true
     validates :dia, inclusion: {in: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"]}
