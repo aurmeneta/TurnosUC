@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :usuarios, :controllers => {
+  devise_for :usuarios, controllers: {
     sessions: 'usuarios/sessions',
     registrations: 'usuarios/registrations'
   },
-  :path => '', :path_names => {
-    sign_in: 'login',
-    sign_out: 'logout',
-    sign_up: 'register',
-    edit: 'perfil'
-  }
+                        path: '', path_names: {
+                          sign_in: 'login',
+                          sign_out: 'logout',
+                          sign_up: 'register',
+                          edit: 'perfil'
+                        }
 
   root 'turnos#index'
 
@@ -26,5 +28,4 @@ Rails.application.routes.draw do
   delete 'solicituds/:id', to: 'solicituds#delete', as: :delete_solicitud
   post 'solicitudes/aceptar/:id', to: 'solicituds#aceptar', as: :aceptar_solicitud
   post 'solicitudes/rechazar/:id', to: 'solicituds#rechazar', as: :rechazar_solicitud
-
 end

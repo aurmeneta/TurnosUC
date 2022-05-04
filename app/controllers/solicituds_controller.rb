@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 class SolicitudsController < ApplicationController
   def create
     turno = Turno.find(params[:turno_id])
 
-    if turno.usuario.id != current_usuario.id
+    if turno.usuario.id == current_usuario.id
+      redirect_to turno, alert: 'No puedes solicitar un cupo en tu propio turno', status: 304
+    else
       @solicitud = Solicitud.new(
-        descripcion: "Pendiente",
+        descripcion: 'Pendiente',
         usuario_id: current_usuario.id,
         turno_id: turno.id
       )
       @solicitud.save
       redirect_to turno
-    else
-      redirect_to turno, alert: "No puedes solicitar un cupo en tu propio turno", status: 304
     end
   end
 
@@ -22,9 +24,8 @@ class SolicitudsController < ApplicationController
       solicitud.destroy
       redirect_to solicitud.turno
     else
-      redirect_to solicitud.turno, alert: "Solo puedes eliminar solicitudes tuyas", status: 304
+      redirect_to solicitud.turno, alert: 'Solo puedes eliminar solicitudes tuyas', status: 304
     end
-
   end
 
   def edit
@@ -38,7 +39,7 @@ class SolicitudsController < ApplicationController
       solicitud.update(descripcion: solicitud_params[:descripcion])
       redirect_to solicitud.turno
     else
-      redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes", status: 304
+      redirect_to solicitud.turno, alert: 'Solo el creador del turno puede aceptar/rechazar solicitudes', status: 304
     end
   end
 
@@ -46,10 +47,10 @@ class SolicitudsController < ApplicationController
     solicitud = Solicitud.find(params[:id])
 
     if solicitud.turno.usuario.id == current_usuario.id
-      solicitud.update(descripcion: "Aceptada")
+      solicitud.update(descripcion: 'Aceptada')
       redirect_to solicitud.turno
     else
-      redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes", status: 304
+      redirect_to solicitud.turno, alert: 'Solo el creador del turno puede aceptar/rechazar solicitudes', status: 304
     end
   end
 
@@ -57,18 +58,16 @@ class SolicitudsController < ApplicationController
     solicitud = Solicitud.find(params[:id])
 
     if solicitud.turno.usuario.id == current_usuario.id
-      solicitud.update(descripcion: "Rechazada")
+      solicitud.update(descripcion: 'Rechazada')
       redirect_to solicitud.turno
     else
-      redirect_to solicitud.turno, alert: "Solo el creador del turno puede aceptar/rechazar solicitudes", status: 304
+      redirect_to solicitud.turno, alert: 'Solo el creador del turno puede aceptar/rechazar solicitudes', status: 304
     end
-
   end
 
-
   private
-    def solicitud_params
-      params.require(:solicitud)
-    end
 
+  def solicitud_params
+    params.require(:solicitud)
+  end
 end

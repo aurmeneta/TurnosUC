@@ -1,7 +1,9 @@
-class Solicitud < ApplicationRecord
-    belongs_to :turno
-    belongs_to :usuario
+# frozen_string_literal: true
 
-    validates :descripcion, inclusion: {in: ["Aceptada", "Rechazada", "Pendiente"]}
-    validates :usuario, :turno, presence: true
+class Solicitud < ApplicationRecord
+  belongs_to :turno
+  belongs_to :usuario
+
+  validates :descripcion, inclusion: { in: %w[Aceptada Rechazada Pendiente] }
+  validates :usuario, :turno, presence: true
 end

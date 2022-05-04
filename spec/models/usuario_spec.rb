@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Usuario, type: :model do
-
   before(:each) do
-    @usuario = Usuario.new(id: 1, email: "email@prueba.com", nombre: "username", imagen_perfil: "https://www.google.com", direccion: "Alameda 123", telefono: "123456789", password: 'abcdefg')
+    @usuario = Usuario.new(id: 1, email: 'email@prueba.com', nombre: 'username',
+                           imagen_perfil: 'https://www.google.com', direccion: 'Alameda 123', telefono: '123456789', password: 'abcdefg')
   end
 
   it 'is valid with valid attributes' do
