@@ -43,4 +43,16 @@ RSpec.describe "Solicituds", type: :request do
             expect(response).to have_http_status(:found)            
         end
     end
+
+    describe 'update solicitud' do
+        it 'should update a solicitud' do
+            sign_in segunda_solicitud.turno.usuario
+            patch "/solicituds/#{segunda_solicitud.id}", params: {
+                solicitud: {
+                    descripcion: "Pendiente"
+                }
+            }
+            expect(Solicitud.find(segunda_solicitud.id).descripcion).to eq("Pendiente")
+        end
+    end
 end

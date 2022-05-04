@@ -63,7 +63,7 @@ class TurnosController < ApplicationController
                 ))
                 redirect_to @turno, notice: "Cambios guardados"
             else
-                redirect_to @turno, alert: @turno.errors.full_messages
+                redirect_to @turno, alert: @turno.errors.full_messages, status: 304
             end
         else
             redirect_to @turno, alert: "No puedes editar este elemento", status: 304
