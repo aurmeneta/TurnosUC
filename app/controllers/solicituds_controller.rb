@@ -1,8 +1,4 @@
 class SolicitudsController < ApplicationController
-  def index
-    @solicituds = Solicitud.all
-  end
-
   def create
     turno = Turno.find(params[:turno_id])
 

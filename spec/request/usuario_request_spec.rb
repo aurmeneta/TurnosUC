@@ -41,7 +41,7 @@ RSpec.describe "Usuarios", type: :request do
     end
 
     describe 'update user' do
-        it 'should update a new user' do
+        it 'should update a user' do
             usuario.nombre = Faker::Name.name
             put '/', params: {usuario: usuario}
             expect(response).to have_http_status(:found)
