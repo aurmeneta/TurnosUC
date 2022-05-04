@@ -31,7 +31,4 @@ RSpec.describe Usuario, type: :model do
     @usuario.telefono = nil
     expect(@usuario).not_to be_valid
   end
-
-
-
 end
