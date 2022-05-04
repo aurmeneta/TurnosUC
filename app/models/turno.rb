@@ -1,6 +1,6 @@
 class Turno < ApplicationRecord
     belongs_to :usuario
-    has_many :solicitud
+    has_many :solicituds
   
     validates :usuario, :direccion_salida, presence: true
     validates :dia, inclusion: {in: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"]}
@@ -9,4 +9,10 @@ class Turno < ApplicationRecord
     validates :cupos, numericality: {only_integer: true, greater_than_or_equal_to: 1}
     validates :campus, inclusion: {in: ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"]}
 
+    def destroy
+        self.solicituds.each do |solicitud|
+            solicitud.destroy
+        end
+        super
+    end
 end
