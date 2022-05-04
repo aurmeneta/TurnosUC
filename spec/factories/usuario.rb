@@ -8,5 +8,6 @@ FactoryBot.define do
         direccion { Faker::Address.full_address }
         telefono { "912345678" }
         password { "password" }
+        password_confirmation { "password" }
     end
 end
