@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2022_05_03_005944) do
 
   # These are extensions that must be enabled in order to support this database
@@ -55,7 +54,6 @@ ActiveRecord::Schema.define(version: 2022_05_03_005944) do
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
-
 
   add_foreign_key "solicituds", "turnos"
   add_foreign_key "solicituds", "usuarios"

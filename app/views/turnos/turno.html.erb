@@ -22,7 +22,6 @@
 <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
 <p style="font-family:Cambria"><b>Solicitudes:</b></p>
 <ul>
-
     <% @turno.solicituds.each do |solicitud| %>
         <li>
         <%= "Solicitud #{solicitud.id} de #{solicitud.usuario.nombre} | Estado: #{solicitud.descripcion}" %>
