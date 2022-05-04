@@ -15,12 +15,9 @@ class TurnosController < ApplicationController
             campus: params[:campus],
             usuario_id: current_usuario.id
         )
-
         
         if @turno.save
-
             redirect_to @turno
-
         else
             render :new, status: 422
         end
@@ -28,7 +25,6 @@ class TurnosController < ApplicationController
 
     def turno
         @turno = Turno.find(params[:id])
-
     end
 
     def delete
@@ -38,7 +34,7 @@ class TurnosController < ApplicationController
             turno.destroy
             redirect_to root_path
         else
-            redirect_to turno, alert: "Solo puedes eliminar tus propios turnos"
+            redirect_to turno, alert: "Solo puedes eliminar tus propios turnos", status: 304
         end
 
     end
@@ -47,7 +43,7 @@ class TurnosController < ApplicationController
         @turno = Turno.find(params[:id])
 
         if @turno.usuario_id != current_usuario.id
-            redirect_to @turno, alert: "No puedes editar este turno"
+            redirect_to @turno, alert: "No puedes editar este turno", status: 304
         end
     end
 
@@ -70,7 +66,7 @@ class TurnosController < ApplicationController
                 redirect_to @turno, alert: @turno.errors.full_messages
             end
         else
-            redirect_to @turno, alert: "No puedes editar este elemento"
+            redirect_to @turno, alert: "No puedes editar este elemento", status: 304
         end
     end
 
