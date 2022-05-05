@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TurnosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: ['index', 'turno']
+  skip_before_action :authenticate_usuario!, only: %w[index turno]
 
   def index
     @turnos = Turno.all
