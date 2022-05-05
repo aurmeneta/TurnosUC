@@ -7,58 +7,101 @@
 <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
   <span>&#8226;</span>Publicado por: <%= @turno.usuario.nombre %> <br/>
   <span>&#8226;</span>Día: <%= @turno.dia %> <br/>
-  <span>&#8226;</span>Dirección salida: <%= @turno.direccion_salida %> <br/>
-  <span>&#8226;</span>Hora salida: <%= @turno.hora_salida %> <br/>
   <span>&#8226;</span>Tipo: <%= @turno.tipo %> <br/>
+  <span>&#8226;</span>Dirección: <%= @turno.direccion_salida %> <br/>
+  <span>&#8226;</span>Hora salida: <%= @turno.hora_salida.strftime('%H:%M') %> <br/>
   <span>&#8226;</span>Cupos: <%= @turno.cupos %> <br/>
   <span>&#8226;</span>Campus: <%= @turno.campus %> <br/>
   <br/>
-  <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id:@turno.id} %>
+  <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id} %>
 </div>
 
 
 <br/>
 
 <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
-<p style="font-family:Cambria"><b>Solicitudes:</b></p>
-<ul>
-    <% @turno.solicituds.each do |solicitud| %>
-        <li>
-        <%= "Solicitud #{solicitud.id} de #{solicitud.usuario.nombre} | Estado: #{solicitud.descripcion}" %>
-
-        <br/>
-
-        <% if solicitud.usuario.id == current_usuario.id %>
-          <div style="display: inline-block;">
-            <%= link_to "Eliminar solicitud", solicitud, method: :delete %>
-          </div>
-        
-          <br/>
-          <br/>
-        <% elsif @turno.usuario.id == current_usuario.id %>
-          <div style="display: inline-block;">
-            <%= button_to "Aceptar turno", aceptar_solicitud_path(solicitud)%>
-          </div> 
-          <div style="display: inline-block;">
-            <%= button_to "Rechazar turno", rechazar_solicitud_path(solicitud)%>
-          </div>
+<p style="font-family:Cambria"><b>Aceptados:</b></p>
+  <ul>
+      <% @turno.solicituds.each do |solicitud| %>
+        <% if solicitud.descripcion == "Aceptada" %>
+          <li>
+          <%= "#{solicitud.usuario.nombre}" %>
+          <% if current_usuario.present? %>
+            <% if solicitud.usuario.id == current_usuario.id %>
+              <div style="display: inline-block;">
+                <%= link_to "Salir del turno", solicitud, method: :delete %>
+              </div>
+            <% elsif @turno.usuario.id == current_usuario.id %>
+              <div style="display: inline-block;">
+                <%= button_to "Eliminar del turno", rechazar_solicitud_path(solicitud)%>
+              </div>
+            <% end %>
+          <% end %>
+          </li>
         <% end %>
-  
+      <% end %>
+  </ul>
+<p style="font-family:Cambria"><b>Pendientes:</b></p>
+  <ul>
+    <% @turno.solicituds.each do |solicitud| %>
+      <% if solicitud.descripcion == "Pendiente" %>
+        <li>
+        <%= "Solicitud de #{solicitud.usuario.nombre}" %>
+        <% if current_usuario.present? %>
+          <% if solicitud.usuario.id == current_usuario.id %>
+            <div style="display: inline-block;">
+              <%= link_to "Eliminar solicitud", solicitud, method: :delete %>
+            </div>
+          <% elsif @turno.usuario.id == current_usuario.id %>
+            <div style="display: inline-block;">
+              <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud)%>
+            </div>
+            <div style="display: inline-block;">
+              <%= button_to "Rechazar solicitud", rechazar_solicitud_path(solicitud)%>
+            </div>
+          <% end %>
+        <% end %>
         </li>
+      <% end %>
     <% end %>
-</ul>
+  </ul>
+
+<p style="font-family:Cambria"><b>Rechazados:</b></p>
+  <ul>
+      <% @turno.solicituds.each do |solicitud| %>
+        <% if solicitud.descripcion == "Rechazada" %>
+          <li>
+          <%= "#{solicitud.usuario.nombre}" %>
+          <% if current_usuario.present? %>
+            <% if solicitud.usuario.id == current_usuario.id %>
+              <div style="display: inline-block;">
+                <%= link_to "Eliminar solicitud", solicitud, method: :delete %>
+              </div>
+            <% elsif @turno.usuario.id == current_usuario.id %>
+              <div style="display: inline-block;">
+                <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud)%>
+              </div>
+            <% end %>
+          <% end %>
+          </li>
+        <% end %>
+      <% end %>
+  </ul>
+
 </div>
 
 <br/>
 
-<% if @turno.usuario.id == current_usuario.id %>
-  <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-    <%= link_to "Editar turno", edit_turno_path(@turno)%>
-  </div>
+<% if current_usuario.present? %>
+  <% if @turno.usuario.id == current_usuario.id %>
+    <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
+      <%= link_to "Editar turno", edit_turno_path(@turno)%>
+    </div>
 
-  <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-    <%= link_to "Eliminar turno", @turno, method: :delete %>
-  </div>
+    <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
+      <%= link_to "Eliminar turno", @turno, method: :delete %>
+    </div>
+  <% end %>
 <% end %>
 
 <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">

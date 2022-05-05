@@ -4,7 +4,7 @@
 
 <br/>
 
-<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;margin:auto;">
+<div style="background-color: #71a9c0; width:400px; height:auto;border: 3px solid;margin:auto;">
 <%= form_with action: 'create' do |f| %>
 
 
@@ -12,24 +12,24 @@
     <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
 
     <br/>
-    <%= f.label :hora_salida%>
+    <%= f.label :hora_salida %>
     <%= f.time_field :hora_salida, :required => true %>
 
     <br/>
-    <%= f.label :dirección_salida%>
+    <%= f.label "Dirección origen/destino" %>
     <%= f.text_field :direccion_salida, :required => true %>
 
     <br/>
-    <%= f.label :campus_destino%>
+    <%= f.label "Campus origen/destino" %>
     <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %>
 
     <br/>
-    <%= f.label :tipo%>
+    <%= f.label :tipo %>
     <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %>
 
 
     <br/>
-    <%= f.label :cupos%>
+    <%= f.label :cupos %>
     <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
     
     <br/>
