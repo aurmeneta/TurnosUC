@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TurnosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: ['index']
+  skip_before_action :authenticate_usuario!, only: ['index', 'turno']
 
   def index
     @turnos = Turno.all
@@ -36,14 +36,14 @@ class TurnosController < ApplicationController
       turno.destroy
       redirect_to root_path
     else
-      redirect_to turno, alert: 'Solo puedes eliminar tus propios turnos', status: 304
+      redirect_to turno, alert: 'Solo puedes eliminar tus propios turnos'
     end
   end
 
   def edit
     @turno = Turno.find(params[:id])
 
-    redirect_to @turno, alert: 'No puedes editar este turno', status: 304 if @turno.usuario_id != current_usuario.id
+    redirect_to @turno, alert: 'No puedes editar este turno' if @turno.usuario_id != current_usuario.id
   end
 
   def update
@@ -62,10 +62,10 @@ class TurnosController < ApplicationController
       )
         redirect_to @turno, notice: 'Cambios guardados'
       else
-        redirect_to @turno, alert: @turno.errors.full_messages, status: 304
+        redirect_to @turno, alert: @turno.errors.full_messages
       end
     else
-      redirect_to @turno, alert: 'No puedes editar este elemento', status: 304
+      redirect_to @turno, alert: 'No puedes editar este elemento'
     end
   end
 
