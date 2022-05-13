@@ -11,9 +11,4 @@ class Turno < ApplicationRecord
   validates :tipo, inclusion: { in: %w[Ida Vuelta] }
   validates :cupos, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :campus, inclusion: { in: ['San Joaquín', 'Casa Central', 'Oriente', 'Lo Contador', 'Villarrica'] }
-
-  def destroy
-    solicituds.each(&:destroy)
-    super
-  end
 end
