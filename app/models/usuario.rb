@@ -12,6 +12,7 @@ class Usuario < ApplicationRecord
 
   has_many :turnos
   has_many :solicituds
+  has_many :mensajes
 
   def destroy
     turnos.each(&:destroy)
