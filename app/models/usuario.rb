@@ -12,14 +12,5 @@ class Usuario < ApplicationRecord
 
   has_many :turnos
   has_many :solicituds
-
-  def destroy
-    turnos.each(&:destroy)
-
-    puts turnos
-
-    solicituds.each(&:destroy)
-
-    super
-  end
+  has_many :mensajes
 end

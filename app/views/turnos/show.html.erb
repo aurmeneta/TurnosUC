@@ -93,9 +93,26 @@
 <br/>
 
 <% if current_usuario.present? %>
+  <% if @turno.usuario_en_turno(current_usuario.id)  %>
+    <p>CHAT</p>
+    <ul>
+      <% @turno.mensajes.order(:updated_at).each do |mensaje| %>
+        <li><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></li>
+      <% end %>
+    <ul>
+
+    <%= form_with url: turno_mensajes_path(@turno) do |f| %>
+      <%= f.text_field :mensaje %>
+
+      <%= f.submit "Enviar mensaje" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if current_usuario.present? %>
   <% if @turno.usuario.id == current_usuario.id %>
     <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-      <%= link_to "Editar turno", edit_turno_path(@turno)%>
+      <%= link_to "Editar turno", edit_turno_path(@turno) %>
     </div>
 
     <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">

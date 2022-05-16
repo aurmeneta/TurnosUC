@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TurnosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: %w[index turno]
+  skip_before_action :authenticate_usuario!, only: %w[index show]
 
   def index
     @turnos = Turno.all
@@ -25,11 +25,11 @@ class TurnosController < ApplicationController
     end
   end
 
-  def turno
+  def show
     @turno = Turno.find(params[:id])
   end
 
-  def delete
+  def destroy
     turno = Turno.find(params[:id])
 
     if turno.usuario.id == current_usuario.id
