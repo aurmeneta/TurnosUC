@@ -19,7 +19,7 @@ RSpec.describe 'Turnos', type: :request do
 
   describe 'get turno' do
     it 'should return a successful request' do
-      get "/turno/#{turno.id}"
+      get "/turnos/#{turno.id}"
       expect(response).to have_http_status(:ok)
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe 'Turnos', type: :request do
     it 'should create a new turno' do
       sign_in turno.usuario
       expect do
-        post '/crear_turno/', params: {
+        post '/turnos/', params: {
           dia: turno.dia,
           direccion_salida: turno.direccion_salida,
           hora_salida: turno.hora_salida,
@@ -44,7 +44,7 @@ RSpec.describe 'Turnos', type: :request do
     it 'should delete a turno' do
       sign_in turno.usuario
       expect do
-        delete "/turno/#{turno.id}"
+        delete "/turnos/#{turno.id}"
       end.to change(Turno, :count).by(-1)
     end
   end
@@ -53,7 +53,7 @@ RSpec.describe 'Turnos', type: :request do
     it 'should update a turno' do
       sign_in turno.usuario
       turno.campus = 'San Joaquín'
-      patch "/turno/#{turno.id}", params: {
+      patch "/turnos/#{turno.id}", params: {
         turno: {
           dia: turno.dia,
           direccion_salida: turno.direccion_salida,
