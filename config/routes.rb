@@ -13,6 +13,7 @@ Rails.application.routes.draw do
                         }
 
   root 'turnos#index'
+  get 'historial', to: 'historial#index', as: :historial
 
   resources :turnos do
     resources :mensajes
