@@ -22,4 +22,12 @@ class Turno < ApplicationRecord
       false
     end
   end
+
+  def to_s
+    if tipo == "Ida"
+      "Turno ##{id} #{tipo} de #{direccion_salida} a #{campus}"
+    else
+      "Turno ##{id} #{tipo} de #{campus} #{direccion_salida}"
+    end
+  end
 end
