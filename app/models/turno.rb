@@ -12,17 +12,14 @@ class Turno < ApplicationRecord
   validates :cupos, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :campus, inclusion: { in: ['San Joaquín', 'Casa Central', 'Oriente', 'Lo Contador', 'Villarrica'] }
 
-
   def usuario_en_turno(id_usuario)
-    if self.usuario.id == id_usuario
-      return true
+    if usuario.id == id_usuario
+      true
     else
-      self.solicituds.each do |solicitud|
-        if solicitud.descripcion == "Aceptada" && solicitud.usuario.id == id_usuario
-          return true
-        end
+      solicituds.each do |solicitud|
+        return true if solicitud.descripcion == 'Aceptada' && solicitud.usuario.id == id_usuario
       end
-      return false  
+      false
     end
   end
 end
