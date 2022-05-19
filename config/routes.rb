@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'resenas/index', to: 'resenas#index', as: :resenas
+  get 'resenas/new', to: 'resenas#new', as: :new_resena
+  get 'resenas/create'
+  get 'resenas/edit', to: 'resenas#edit', as: :edit_resena
+  get 'resenas/update'
+  get 'resenas/delete'
   devise_for :usuarios, controllers: {
     sessions: 'usuarios/sessions',
     registrations: 'usuarios/registrations'

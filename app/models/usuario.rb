@@ -13,4 +13,5 @@ class Usuario < ApplicationRecord
   has_many :turnos
   has_many :solicituds
   has_many :mensajes
+  has_many :resenas
 end

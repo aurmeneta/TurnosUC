@@ -1,0 +1,19 @@
+<h1>Resenas#index</h1>
+<p>Find me in app/views/resenas/index.html.erb</p>
+
+<ul>
+      <% @usuario.resenas.each do |resena| %>
+          <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+            <span>&#8226;</span>Calificacion: <%= @resena.calificacion %> <br/>
+            <span>&#8226;</span>descripcion: <%= @resena.contenido %> <br/>
+            <% if resena.autor_id == current_usuario.id %>
+              <div style="display: inline-block;">
+                <%= link_to "Eliminar reseña", resena, method: :delete %>
+                <%= link_to "Editar reseña", edit_resena_path(resena) %>
+
+              </div>
+        <% end %>
+  </ul>
+   <ul>
+    <%= link_to "Nueva reseña", new_resena_path, params: {autor_id: current_usuario.id, usuario_id: @usuario.id} %>
+  </ul>

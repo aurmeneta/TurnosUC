@@ -14,6 +14,7 @@
   <span>&#8226;</span>Campus: <%= @turno.campus %> <br/>
   <br/>
   <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id} %>
+  <%= button_to "Ver reseñas de usuario", resenas_path, params: {usuario_id: @turno.usuario_id} %>
 </div>
 
 
