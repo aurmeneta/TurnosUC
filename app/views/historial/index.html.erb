@@ -1,35 +1,41 @@
-<div>
+<div class="bigDiv">
     Turnos que has publicado:
     <ul>
         <% @turnos.each do |turno| %>
-            <li><%= link_to "#{turno}", turno %></li>
+            <li><%= link_to "#{turno}", turno, class: "link" %></li>
         <% end %>
     </ul>
 </div>
 
-<div>
+<div class="bigDiv">
     Solicitudes aceptadas:
     <ul>
         <% @solicitudes_aceptadas.each do |solicitud| %>
-            <li><%= link_to "#{solicitud}", solicitud.turno %></li>
+            <li><%= link_to "#{solicitud}", solicitud.turno, class: "link" %></li>
         <% end %>
     </ul>
 </div>
 
-<div>
+<div class="bigDiv">
     Solicitudes pendientes:
     <ul>
         <% @solicitudes_pendientes.each do |solicitud| %>
-            <li><%= link_to "#{solicitud}", solicitud.turno %></li>
+            <li><%= link_to "#{solicitud}", solicitud.turno, class: "link" %></li>
         <% end %>
     </ul>
 </div>
 
-<div>
+<div class="bigDiv">
     Solicitudes rechazadas:
     <ul>
         <% @solicitudes_rechazadas.each do |solicitud| %>
-            <li><%= link_to "#{solicitud}", solicitud.turno %></li>
+            <li><%= link_to "#{solicitud}", solicitud.turno, class: "link" %></li>
         <% end %>
     </ul>
+</div>
+
+<br>
+
+<div class="smallButton">
+  <%= link_to "Volver", root_path, class: "link" %>
 </div>
