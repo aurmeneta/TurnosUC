@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_224129) do
+ActiveRecord::Schema.define(version: 2022_05_19_224016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2022_05_18_224129) do
   create_table "resenas", force: :cascade do |t|
     t.float "calificacion"
     t.string "contenido"
+    t.integer "usuario_id"
+    t.integer "autor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,6 +76,8 @@ ActiveRecord::Schema.define(version: 2022_05_18_224129) do
 
   add_foreign_key "mensajes", "turnos", on_delete: :cascade
   add_foreign_key "mensajes", "usuarios", on_delete: :cascade
+  add_foreign_key "resenas", "usuarios", column: "autor_id", on_delete: :cascade
+  add_foreign_key "resenas", "usuarios", on_delete: :cascade
   add_foreign_key "solicituds", "turnos", on_delete: :cascade
   add_foreign_key "solicituds", "usuarios", on_delete: :cascade
   add_foreign_key "turnos", "usuarios", on_delete: :cascade

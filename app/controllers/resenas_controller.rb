@@ -1,22 +1,24 @@
-class ResenasController < ApplicationController
+# frozen_string_literal: true
 
+class ResenasController < ApplicationController
   def index
     @usuario = Usuario.find(params[:usuario_id])
   end
 
   def create
     @resena = Resena.new(
-        calificacion: params[:calificacion],
-        contenido: params[:contenido],
-        usuario_id: @usuario.id,
-        autor_id: current_usuario.id
+      calificacion: params[:calificacion],
+      contenido: params[:contenido],
+      usuario_id: params[:usuario_id],
+      autor_id: current_usuario.id
     )
 
     if @resena.save
-      redirect_to @turno
-    
+      redirect_to turnos_path
+
     else
       render :new, status: 422
+    end
   end
 
   def edit

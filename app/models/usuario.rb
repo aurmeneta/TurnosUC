@@ -13,5 +13,6 @@ class Usuario < ApplicationRecord
   has_many :turnos
   has_many :solicituds
   has_many :mensajes
-  has_many :resenas
+  has_many :resenas, class_name: 'Resena', foreign_key: :usuario_id
+  has_many :resenas_escritas, class_name: 'Resena', foreign_key: :autor_id
 end

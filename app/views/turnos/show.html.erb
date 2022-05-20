@@ -14,7 +14,11 @@
   <span>&#8226;</span>Campus: <%= @turno.campus %> <br/>
   <br/>
   <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id} %>
-  <%= button_to "Ver reseñas de usuario", resenas_path, params: {usuario_id: @turno.usuario_id} %>
+  <%= button_to "Ver reseñas de usuario", resenas_path(@turno.usuario_id), method: :get %>
+
+  <% if current_usuario.present? && current_usuario.id != @turno.usuario_id %>
+    <%= button_to "Dejar reseña a usuario", new_resena_path(@turno.usuario_id), method: :get %>
+  <% end %>
 </div>
 
 
@@ -35,6 +39,9 @@
             <% elsif @turno.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
                 <%= button_to "Eliminar del turno", rechazar_solicitud_path(solicitud)%>
+              </div>
+              <div style="display: inline-block;">
+                <%= button_to "Dejar reseña", new_resena_path(solicitud.usuario.id), method: :get%>
               </div>
             <% end %>
           <% end %>

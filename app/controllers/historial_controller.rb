@@ -1,9 +1,11 @@
-class HistorialController < ApplicationController
-    def index
-        @turnos = current_usuario.turnos
+# frozen_string_literal: true
 
-        @solicitudes_aceptadas = current_usuario.solicituds.where('descripcion': 'Aceptada')
-        @solicitudes_pendientes = current_usuario.solicituds.where('descripcion': 'Pendiente')
-        @solicitudes_rechazadas = current_usuario.solicituds.where('descripcion': 'Rechazada')
-    end
+class HistorialController < ApplicationController
+  def index
+    @turnos = current_usuario.turnos
+
+    @solicitudes_aceptadas = current_usuario.solicituds.where(descripcion: 'Aceptada')
+    @solicitudes_pendientes = current_usuario.solicituds.where(descripcion: 'Pendiente')
+    @solicitudes_rechazadas = current_usuario.solicituds.where(descripcion: 'Rechazada')
+  end
 end

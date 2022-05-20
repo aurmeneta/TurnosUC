@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'resenas/index', to: 'resenas#index', as: :resenas
-  get 'resenas/new', to: 'resenas#new', as: :new_resena
-  get 'resenas/create'
-  get 'resenas/edit', to: 'resenas#edit', as: :edit_resena
-  get 'resenas/update'
-  get 'resenas/delete'
   devise_for :usuarios, controllers: {
     sessions: 'usuarios/sessions',
     registrations: 'usuarios/registrations'
@@ -32,4 +26,12 @@ Rails.application.routes.draw do
   delete 'solicituds/:id', to: 'solicituds#delete', as: :delete_solicitud
   post 'solicitudes/aceptar/:id', to: 'solicituds#aceptar', as: :aceptar_solicitud
   post 'solicitudes/rechazar/:id', to: 'solicituds#rechazar', as: :rechazar_solicitud
+
+  get 'resenas/:usuario_id/', to: 'resenas#index', as: :resenas
+  get 'resenas/:usuario_id/new', to: 'resenas#new', as: :new_resena
+  post 'resenas/:usuario_id/', to: 'resenas#create'
+  get 'resenas/:usuario_id/:resena_id', to: 'resenas#show', as: :resena
+  get 'resenas/:usuario_id/:resena_id/edit', to: 'resenas#edit', as: :edit_resena
+  patch 'resenas/:usuario_id/:resena_id', to: 'resenas#update'
+  delete 'resenas/:usuario_id/:resena_id', to: 'resenas#delete'
 end
