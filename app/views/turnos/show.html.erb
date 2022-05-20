@@ -1,31 +1,43 @@
-<div class="bigDiv" style="text-align:center;">
+<div class="bigDiv" style="text-align:center;width:260px;border-radius:15px;">
   <h1 style="font-family:Cambria;text-align:center;">Turno <%= @turno.id %></h1>
 </div>
 
 <br/>
 
-<div class="bigDiv">
-  <span>&#8226;</span>Publicado por: <%= @turno.usuario.nombre %> <br/>
-  <span>&#8226;</span>Día: <%= @turno.dia %> <br/>
-  <span>&#8226;</span>Tipo: <%= @turno.tipo %> <br/>
-  <span>&#8226;</span>Dirección: <%= @turno.direccion_salida %> <br/>
-  <span>&#8226;</span>Hora salida: <%= @turno.hora_salida.strftime('%H:%M') %> <br/>
-  <span>&#8226;</span>Cupos: <%= @turno.cupos %> <br/>
-  <span>&#8226;</span>Campus: <%= @turno.campus %> <br/>
-  <br/>
+<div class="bigDiv" style="height:250px;width:700px;border-radius:15px;">
+  <div style="float:left;display:inline-block;vertical-align:middle;">
+    <img src=<%= @turno.usuario.imagen_perfil %>  width="150" height="150" style="border-radius:15px;">  
+    <p style="font-family:Cambria;float:center;">• Creador: <%= @turno.usuario.nombre %></p>
+    <br>
+  </div>
+  <p>    </p>
+  <div style="float:left;display:inline-block;">
+    <p style="font-family:Cambria;">• Fecha: <%= @turno.dia %> a las <%= @turno.hora_salida.strftime('%H:%M') %> </p> 
+    <p style="font-family:Cambria;">• Tipo: <%= @turno.tipo %></p>
+    <p style="font-family:Cambria;">• Dirección: <%= @turno.direccion_salida %></p>
+    <p style="font-family:Cambria;">• Campus: <%= @turno.campus %></p>
+    <p style="font-family:Cambria;">Este turno posee <%= @turno.cupos %> cupos.</p>
+  
+  </div>
+
+  <br><br><br>
+
+
   <div style="text-align:center;>
-  <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "link" %>
-  <%= button_to "Ver reseñas de usuario", resenas_path(@turno.usuario_id), method: :get , class: "link"%>
-  <% if current_usuario.present? && current_usuario.id != @turno.usuario_id %>
-    <%= button_to "Dejar reseña a usuario", new_resena_path(@turno.usuario_id), method: :get, class: "link" %>
-  <% end %>
+    <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "link" %>
+    <br><br>
+    <%= button_to "Ver reseñas de usuario", resenas_path(@turno.usuario_id), method: :get , class: "link"%>
+    <% if current_usuario.present? && current_usuario.id != @turno.usuario_id %>
+      <br>
+      <%= button_to "Dejar reseña a usuario", new_resena_path(@turno.usuario_id), method: :get, class: "link" %>
+    <% end %>
   </div>
 </div>
 
 
 <br/>
 
-<div class="bigDiv">
+<div class="bigDiv" style="width:420px;">
 <p style="font-family:Cambria"><b>Aceptados:</b></p>
   <ul>
       <% @turno.solicituds.each do |solicitud| %>
@@ -104,14 +116,16 @@
 
 <% if current_usuario.present? %>
   <% if @turno.usuario_en_turno(current_usuario.id)  %>
-   <div class="bigDiv" style="border-radius:15px;">
+   <div class="bigDiv" style="border-radius:15px;width:420px;">
     <%= image_tag("mensaje.png", size: "60x60") %>
     <p style="font-family:Cambria;font-size:30px;display:inline-block;"><b>Ride chat </b></p>
     <hr>
 
     <ul>
       <% @turno.mensajes.order(:updated_at).each do |mensaje| %>
-        <li><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></li>
+       <div class="bigDiv" style="border-radius:15px;height:auto;width:360px;background-color:#FFFFFF;">
+        <li><p style="font-family:Cambria;"><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></p></li>
+       </div>
       <% end %>
     <ul>
         

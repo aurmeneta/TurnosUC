@@ -13,6 +13,7 @@
   </head>
 
   <body>
+    <div class="navBar">
     <% if current_usuario %>
       <div class="button">
         <%= link_to "Inicio", root_path, class: "link" %>
@@ -35,6 +36,10 @@
       </div>
     <% end %>
 
+    </div>
+
+    <br>
+
     <div class="bigDiv" style="text-align:center;border-radius: 15px;">
        <div style="vertical-align:top;display: inline-block;">
          <%= image_tag("logo.png", size: "130x130") %>
@@ -48,5 +53,7 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
+    
+
   </body>
 </html>

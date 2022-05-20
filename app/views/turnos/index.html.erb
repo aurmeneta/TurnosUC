@@ -1,5 +1,5 @@
 
-<div class="bigDiv" style="width:400px;text-align:center;">
+<div class="bigDiv" style="width:350px;text-align:center;">
   <h1 style="font-family:Cambria;text-align:center;">Publicaciones:</h1>
 </div>
 
@@ -10,7 +10,7 @@
   <ul>
     <% @turnos.each do |turno| %>
       <% if turno.tipo == "Ida" %> 
-        <p><%= image_tag("flechas.png", size: "40x40") %>‏‎ <%= link_to "Turno ##{turno.id} de #{turno.direccion_salida} a #{turno.campus} día #{turno.dia}", turno_path(turno.id), class: "link" %></p>
+        <p><%= image_tag("icono.png", size: "30x30") %>‏‎ <%= link_to "Turno ##{turno.id} de #{turno.direccion_salida} a #{turno.campus} día #{turno.dia}", turno_path(turno.id), class: "link" %></p>
       <% end %>
     <% end %>
   </ul>
@@ -19,7 +19,7 @@
   <ul>
     <% @turnos.each do |turno| %>
       <% if turno.tipo == "Vuelta" %>
-        <p><%= image_tag("flechas.png", size: "40x40") %>‏‎ <%= link_to "Turno ##{turno.id} de #{turno.campus} a #{turno.direccion_salida} día #{turno.dia}", turno_path(turno.id), class: "link" %></p>
+        <p><%= image_tag("icono.png", size: "30x30") %>‏‎ <%= link_to "Turno ##{turno.id} de #{turno.campus} a #{turno.direccion_salida} día #{turno.dia}", turno_path(turno.id), class: "link" %></p>
       <% end %>
     <% end %>
   </ul>
