@@ -14,38 +14,42 @@
 
   <body>
     <div class="navBar">
+
+    <div class="bigDiv" style="background-color:#065472;text-align:center;border-radius:15px;width:260px;height:85px;float:left;box-shadow: 0px 0px;border:0px;">
+       <div style="vertical-align:top;display: inline-block;">
+         <%= image_tag("logo.png", size: "70x70") %>
+       </div>
+       <h1 style="font-family:Cambria;font-size:35px;display: inline-block;">Turnos UC‏‏‏‎ ‏‎ ‎‏‏‎</h1>
+    </div>
+ 
+
     <% if current_usuario %>
+      <br>
       <div class="button">
-        <%= link_to "Inicio", root_path, class: "link" %>
-      </div>
-      <div class="button">
-        <%= link_to "Ver perfil", edit_usuario_registration_path, class: "link" %>
+        <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete, class: "link" %>
       </div>
       <div class="button">
         <%= link_to "Ver historial", historial_path, class: "link" %>
       </div>
       <div class="button">
-        <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete, class: "link" %>
+        <%= link_to "Ver perfil", edit_usuario_registration_path, class: "link" %>
+      </div>
+      <div class="button">
+        <%= link_to "Inicio", root_path, class: "link" %>
       </div>
     <% else %>
-      <div class="button">
-        <%= link_to "Iniciar Sesión", new_usuario_session_path, class: "link" %>
-      </div>
+      <br>
       <div class="button">
         <%= link_to "Registrarme", new_usuario_registration_path, class: "link" %>
+      </div>
+      <div class="button" style="vertical-align:bottom;">
+        <%= link_to "Iniciar Sesión", new_usuario_session_path, class: "link" %>
       </div>
     <% end %>
 
     </div>
 
-    <br>
-
-    <div class="bigDiv" style="text-align:center;border-radius: 15px;">
-       <div style="vertical-align:top;display: inline-block;">
-         <%= image_tag("logo.png", size: "130x130") %>
-       </div>
-       <h1 style="font-family:Cambria;font-size:70px;display: inline-block;">Turnos UC‏‏‏‎ ‏‎ ‎‏‏‎</h1>
-    </div>
+    
 
     <hr>
 
