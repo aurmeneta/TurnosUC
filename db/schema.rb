@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2022_05_03_005944) do
+ActiveRecord::Schema.define(version: 2022_05_19_224016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mensajes", force: :cascade do |t|
+    t.string "contenido"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "usuario_id"
+    t.bigint "turno_id"
+    t.index ["turno_id"], name: "index_mensajes_on_turno_id"
+    t.index ["usuario_id"], name: "index_mensajes_on_usuario_id"
+  end
+
+  create_table "resenas", force: :cascade do |t|
+    t.float "calificacion"
+    t.string "contenido"
+    t.integer "usuario_id"
+    t.integer "autor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "solicituds", force: :cascade do |t|
     t.string "descripcion"
@@ -56,8 +74,11 @@ ActiveRecord::Schema.define(version: 2022_05_03_005944) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
-
-  add_foreign_key "solicituds", "turnos"
-  add_foreign_key "solicituds", "usuarios"
-  add_foreign_key "turnos", "usuarios"
+  add_foreign_key "mensajes", "turnos", on_delete: :cascade
+  add_foreign_key "mensajes", "usuarios", on_delete: :cascade
+  add_foreign_key "resenas", "usuarios", column: "autor_id", on_delete: :cascade
+  add_foreign_key "resenas", "usuarios", on_delete: :cascade
+  add_foreign_key "solicituds", "turnos", on_delete: :cascade
+  add_foreign_key "solicituds", "usuarios", on_delete: :cascade
+  add_foreign_key "turnos", "usuarios", on_delete: :cascade
 end

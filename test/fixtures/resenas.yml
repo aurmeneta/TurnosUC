@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  calificacion: 1.5
+  contenido: MyString
+  usuario_id: 1
+  autor_id: 1
+
+two:
+  calificacion: 1.5
+  contenido: MyString
+  usuario_id: 1
+  autor_id: 1

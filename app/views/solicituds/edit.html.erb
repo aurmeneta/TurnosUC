@@ -1,4 +1,3 @@
-
 <div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;margin:auto;">
   <h1 style="font-family:Cambria;text-align:center;">Editar solicitud <%= @solicitud.id %></h1>
 </div>
@@ -6,7 +5,6 @@
 <br/>
 
 <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
-
 Turno: <%= @solicitud.turno.id %>
 
 <%= form_with model: @solicitud, action: 'update' do |f| %>
@@ -15,7 +13,6 @@ Turno: <%= @solicitud.turno.id %>
     <%= f.label :Estado%>
     <%= f.select :descripcion, ["Aceptada", "Rechazada", "Pendiente"], :required => true %>
     
-
     <br/> 
     <br/>
     <div style="text-align:center;">
@@ -23,4 +20,3 @@ Turno: <%= @solicitud.turno.id %>
     </div>
 <% end %>
 </div>
-

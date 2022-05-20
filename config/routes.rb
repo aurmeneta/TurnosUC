@@ -1,23 +1,23 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :usuarios, :controllers => {
+  devise_for :usuarios, controllers: {
     sessions: 'usuarios/sessions',
     registrations: 'usuarios/registrations'
   },
-  :path => '', :path_names => {
-    sign_in: 'login',
-    sign_out: 'logout',
-    sign_up: 'register',
-    edit: 'perfil'
-  }
+                        path: '', path_names: {
+                          sign_in: 'login',
+                          sign_out: 'logout',
+                          sign_up: 'register',
+                          edit: 'perfil'
+                        }
 
   root 'turnos#index'
+  get 'historial', to: 'historial#index', as: :historial
 
-  get 'crear_turno', to: 'turnos#new', as: :new_turno
-  post 'crear_turno', to: 'turnos#create', as: :turnos
-  get 'turno/:id', to: 'turnos#turno', as: :turno
-  delete 'turno/:id', to: 'turnos#delete', as: :delete_turno
-  patch 'turno/:id', to: 'turnos#update', as: :patch_turno
-  get 'turno/editar/:id', to: 'turnos#edit', as: :edit_turno
+  resources :turnos do
+    resources :mensajes
+  end
 
   post 'solicituds/create', to: 'solicituds#create', as: :new_solicitud
   get 'solicituds/:id', to: 'solicituds#show', as: :solicitud
@@ -27,4 +27,11 @@ Rails.application.routes.draw do
   post 'solicitudes/aceptar/:id', to: 'solicituds#aceptar', as: :aceptar_solicitud
   post 'solicitudes/rechazar/:id', to: 'solicituds#rechazar', as: :rechazar_solicitud
 
+  get 'resenas/:usuario_id/', to: 'resenas#index', as: :resenas
+  get 'resenas/:usuario_id/new', to: 'resenas#new', as: :new_resena
+  post 'resenas/:usuario_id/', to: 'resenas#create'
+  get 'resenas/:usuario_id/:resena_id', to: 'resenas#show', as: :resena
+  get 'resenas/:usuario_id/:resena_id/edit', to: 'resenas#edit', as: :edit_resena
+  patch 'resenas/:usuario_id/:resena_id', to: 'resenas#update'
+  delete 'resenas/:usuario_id/:resena_id', to: 'resenas#delete'
 end

@@ -1,0 +1,31 @@
+<div class="bigDiv">
+<h1 style="text-align:center;">Reseñas</h1>
+</div>
+
+<div class="bigDiv">
+<ul>
+      
+        <% @usuario.resenas.each do |resena| %>
+            <span><%= resena.id %>.</span><br>
+            <span>&#8226;</span>Calificación: <%= resena.calificacion %> <br/>
+            <span>&#8226;</span>Descripción: <%= resena.contenido %> <br/><br>
+            <span>Creada por: <%= resena.autor.nombre %></span><br>
+            <% if resena.autor_id == current_usuario.id %>
+              <div>
+                <%= link_to "Eliminar reseña", resena_path(@usuario.id, resena.id), method: :delete, class: "link" %>
+                <%= link_to "Editar reseña", edit_resena_path(@usuario.id, resena.id), class: "link" %>
+              </div>
+            <% end %>
+            <br/>
+        <hr>
+        <% end %>
+      </div>
+</ul>
+
+<br>
+<div class="smallButton">
+    <%= link_to "Nueva reseña", new_resena_path, params: {autor_id: current_usuario.id, usuario_id: @usuario.id}, class: "link" %>
+</div>
+<div class="smallButton">
+  <%= link_to "Volver", turnos_path, class: "link" %>
+</div>

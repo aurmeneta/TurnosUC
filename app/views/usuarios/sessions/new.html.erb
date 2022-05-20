@@ -1,8 +1,8 @@
-<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<div class="bigDiv" style="width:300px;">
   <h1 style="font-family:Cambria;text-align:center;">Log in</h1>
 </div>
 
-<div style="background-color: #71a9c0; width:300px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;text-align:center;">
+<div class="bigDiv" style="width:300px;text-align:center;">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -32,10 +32,7 @@
 
 <br/>
 
-<div style="background-color: #71a9c0; width:80px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-  <%= link_to "Volver", root_path %>
+<div class="smallButton">
+  <%= link_to "Volver", root_path, class: "link" %>
 </div>
 
-<div style="margin:auto;height:auto;">
-  <%= render "usuarios/shared/links" %>
-</div>
