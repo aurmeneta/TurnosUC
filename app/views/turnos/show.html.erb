@@ -37,7 +37,7 @@
 
 <br/>
 
-<div class="bigDiv" style="width:420px;">
+<div class="bigDiv" style="width:550px;">
 <p style="font-family:Cambria"><b>Aceptados:</b></p>
   <ul>
       <% @turno.solicituds.each do |solicitud| %>
@@ -52,6 +52,9 @@
             <% elsif @turno.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
                 <%= button_to "Eliminar del turno", rechazar_solicitud_path(solicitud), class: "link"%>
+              </div>
+              <div style="display: inline-block;">
+                <%= button_to "Ver reseñas", resenas_path(solicitud.usuario.id), method: :get, class: "link"%>
               </div>
               <div style="display: inline-block;">
                 <%= button_to "Dejar reseña", new_resena_path(solicitud.usuario.id), method: :get, class: "link"%>
@@ -75,10 +78,13 @@
             </div>
           <% elsif @turno.usuario.id == current_usuario.id %>
             <div style="display: inline-block;">
-              <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud)%>
+              <%= button_to "Ver reseñas", resenas_path(solicitud.usuario.id), method: :get, class: "link"%>
             </div>
             <div style="display: inline-block;">
-              <%= button_to "Rechazar solicitud", rechazar_solicitud_path(solicitud)%>
+              <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud), class: "link"%>
+            </div>
+            <div style="display: inline-block;">
+              <%= button_to "Rechazar solicitud", rechazar_solicitud_path(solicitud), class: "link"%>
             </div>
           <% end %>
         <% end %>
@@ -100,7 +106,10 @@
               </div>
             <% elsif @turno.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
-                <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud)%>
+                <%= button_to "Ver reseñas", resenas_path(solicitud.usuario.id), method: :get, class: "link"%>
+              </div>
+              <div style="display: inline-block;">
+                <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud), class: "link"%>
               </div>
             <% end %>
           <% end %>
@@ -116,7 +125,7 @@
 
 <% if current_usuario.present? %>
   <% if @turno.usuario_en_turno(current_usuario.id)  %>
-   <div class="bigDiv" style="border-radius:15px;width:420px;">
+   <div class="bigDiv" style="border-radius:15px;width:550px;">
     <%= image_tag("mensaje.png", size: "60x60") %>
     <p style="font-family:Cambria;font-size:30px;display:inline-block;"><b>Ride chat </b></p>
     <hr>
