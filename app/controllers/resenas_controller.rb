@@ -14,7 +14,7 @@ class ResenasController < ApplicationController
     )
 
     if @resena.save
-      redirect_to turnos_path
+      redirect_to resenas_path(params[:usuario_id])
 
     else
       render :new, status: 422
