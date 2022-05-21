@@ -14,7 +14,7 @@ AllCops:
 # Layout
 Layout/LineLength:
   Max: 120
-  Enabled: true
+  Enabled: false
 Layout/AssignmentIndentation:
   Enabled: true
 Layout/ClosingParenthesisIndentation:
@@ -45,8 +45,8 @@ Naming/AsciiIdentifiers:
 Naming/BlockParameterName:
   Enabled: true
   MinNameLength: 2
-Naming/VariableName:
-  Enabled: true
+Naming/VariableNumber:
+  Enabled: false
 
 # Style 
 Style/Next:
@@ -67,6 +67,11 @@ Style/DoubleNegation:
   Enabled: true
 Style/EmptyElse:
   Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/MixinUsage:
+  Enabled: false
+
 
 # Lint
 Lint/AmbiguousAssignment:
@@ -96,4 +101,11 @@ Lint/EmptyExpression:
 Lint/ShadowedArgument:
   Enabled: true
 
-### Añade aquí todos los Cops que quieras:
+# Metrics
+Metrics/BlockLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+
