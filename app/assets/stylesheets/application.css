@@ -14,6 +14,10 @@
  *= require_self
  */
  
+h1 {
+  font-weight:bold;
+  color:black;
+}
 
 .bigDiv {
   background-color: #71a9c0; 
@@ -59,7 +63,6 @@
   height:85px;
   background-color:#065472;
   vertical-align:top;
-  border-radius: 15px;
 }
 
 .link {
