@@ -13,31 +13,43 @@
   </head>
 
   <body>
+    <div class="navBar">
+
+    <div class="bigDiv" style="background-color:#065472;text-align:center;border-radius:15px;width:260px;height:85px;float:left;box-shadow: 0px 0px;border:0px;">
+       <div style="vertical-align:top;display: inline-block;">
+         <%= image_tag("logo.png", size: "70x70") %>
+       </div>
+       <h1 style="font-family:Cambria;font-size:35px;display: inline-block;">Turnos UC‏‏‏‎ ‏‎ ‎‏‏‎</h1>
+    </div>
+ 
+
     <% if current_usuario %>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
-        <%= link_to "Inicio", root_path %>
+      <br>
+      <div class="button">
+        <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete, class: "link" %>
       </div>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
-        <%= link_to "Ver perfil", edit_usuario_registration_path %>
+      <div class="button">
+        <%= link_to "Ver historial", historial_path, class: "link" %>
       </div>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
-        <%= link_to "Ver historial", historial_path %>
+      <div class="button">
+        <%= link_to "Ver perfil", edit_usuario_registration_path, class: "link" %>
       </div>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;position:relative;text-align:center;display: inline-block;border-radius: 15px;">
-        <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete %>
+      <div class="button">
+        <%= link_to "Inicio", root_path, class: "link" %>
       </div>
     <% else %>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;text-align:center;display: inline-block;border-radius: 15px;">
-        <%= link_to "Iniciar Sesión", new_usuario_session_path %>
+      <br>
+      <div class="button">
+        <%= link_to "Registrarme", new_usuario_registration_path, class: "link" %>
       </div>
-      <div style="background-color: #71a9c0; width:100px; height:30px;border: 3px solid;text-align:center;display: inline-block;border-radius: 15px;">
-        <%= link_to "Registrarme", new_usuario_registration_path %>
+      <div class="button" style="vertical-align:bottom;">
+        <%= link_to "Iniciar Sesión", new_usuario_session_path, class: "link" %>
       </div>
     <% end %>
 
-    <div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;text-align:center;">
-       <h1 style="font-family:Cambria;font-size:70px;">Turnos UC</h1>
     </div>
+
+    
 
     <hr>
 
@@ -45,5 +57,7 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
+    
+
   </body>
 </html>

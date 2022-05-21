@@ -1,0 +1,30 @@
+<div class="bigDiv" style="width:250px;">
+  <h1 style="font-family:Cambria;text-align:center;">Crear reseña</h1>
+</div>
+
+<br/>
+
+<div class="bigDiv" style="width:400px;border-radius:15px;">
+<%= form_with url: resenas_path(params[:usuario_id]) do |f| %>
+    <%= f.label :usuario %>
+    <%= f.label Usuario.find(params[:usuario_id]).nombre %>
+
+    <br/>
+    <%= f.label :calificación %>
+    <%= f.select :calificacion, [1, 2, 3, 4, 5], :required => true %>
+
+    <br/>
+    <%= f.label "Descripción" %>
+    <%= f.text_field :contenido, :required => true %>
+    
+    <br/>
+    <br/>
+    <%= f.submit "Crear reseña", class: "link" %>
+<% end %>
+</div>
+
+<br/>
+
+<div class="smallButton">
+  <%= link_to "Volver", turnos_path, class: "link" %>
+</div>

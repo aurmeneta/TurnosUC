@@ -1,25 +1,43 @@
-<div style="background-color: #71a9c0; width:250px; height:auto;border: 3px solid;margin:auto;box-shadow: 5px 5px;">
+<div class="bigDiv" style="text-align:center;width:260px;border-radius:15px;">
   <h1 style="font-family:Cambria;text-align:center;">Turno <%= @turno.id %></h1>
 </div>
 
 <br/>
 
-<div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
-  <span>&#8226;</span>Publicado por: <%= @turno.usuario.nombre %> <br/>
-  <span>&#8226;</span>Día: <%= @turno.dia %> <br/>
-  <span>&#8226;</span>Tipo: <%= @turno.tipo %> <br/>
-  <span>&#8226;</span>Dirección: <%= @turno.direccion_salida %> <br/>
-  <span>&#8226;</span>Hora salida: <%= @turno.hora_salida.strftime('%H:%M') %> <br/>
-  <span>&#8226;</span>Cupos: <%= @turno.cupos %> <br/>
-  <span>&#8226;</span>Campus: <%= @turno.campus %> <br/>
-  <br/>
-  <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id} %>
+<div class="bigDiv" style="height:250px;width:700px;border-radius:15px;">
+  <div style="float:left;display:inline-block;vertical-align:middle;">
+    <img src=<%= @turno.usuario.imagen_perfil %>  width="150" height="150" style="border-radius:15px;">  
+    <p style="font-family:Cambria;float:center;">• Creador: <%= @turno.usuario.nombre %></p>
+    <br>
+  </div>
+  <p>    </p>
+  <div style="float:left;display:inline-block;">
+    <p style="font-family:Cambria;">• Fecha: <%= @turno.dia %> a las <%= @turno.hora_salida.strftime('%H:%M') %> </p> 
+    <p style="font-family:Cambria;">• Tipo: <%= @turno.tipo %></p>
+    <p style="font-family:Cambria;">• Dirección: <%= @turno.direccion_salida %></p>
+    <p style="font-family:Cambria;">• Campus: <%= @turno.campus %></p>
+    <p style="font-family:Cambria;">Este turno posee <%= @turno.cupos %> cupos.</p>
+  
+  </div>
+
+  <br><br><br>
+
+
+  <div style="text-align:center;">
+    <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "link" %>
+    <br><br>
+    <%= button_to "Ver reseñas de usuario", resenas_path(@turno.usuario_id), method: :get , class: "link"%>
+    <% if current_usuario.present? && current_usuario.id != @turno.usuario_id %>
+      <br>
+      <%= button_to "Dejar reseña a usuario", new_resena_path(@turno.usuario_id), method: :get, class: "link" %>
+    <% end %>
+  </div>
 </div>
 
 
 <br/>
 
-<div style="background-color: #71a9c0; width:500px; height:auto;border: 3px solid;box-shadow: 5px 5px;margin:auto;">
+<div class="bigDiv" style="width:550px;">
 <p style="font-family:Cambria"><b>Aceptados:</b></p>
   <ul>
       <% @turno.solicituds.each do |solicitud| %>
@@ -29,11 +47,17 @@
           <% if current_usuario.present? %>
             <% if solicitud.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
-                <%= link_to "Salir del turno", solicitud, method: :delete %>
+                <%= link_to "Salir del turno", solicitud, method: :delete, class: "link" %>
               </div>
             <% elsif @turno.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
-                <%= button_to "Eliminar del turno", rechazar_solicitud_path(solicitud)%>
+                <%= button_to "Eliminar del turno", rechazar_solicitud_path(solicitud), class: "link"%>
+              </div>
+              <div style="display: inline-block;">
+                <%= button_to "Ver reseñas", resenas_path(solicitud.usuario.id), method: :get, class: "link"%>
+              </div>
+              <div style="display: inline-block;">
+                <%= button_to "Dejar reseña", new_resena_path(solicitud.usuario.id), method: :get, class: "link"%>
               </div>
             <% end %>
           <% end %>
@@ -54,10 +78,13 @@
             </div>
           <% elsif @turno.usuario.id == current_usuario.id %>
             <div style="display: inline-block;">
-              <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud)%>
+              <%= button_to "Ver reseñas", resenas_path(solicitud.usuario.id), method: :get, class: "link"%>
             </div>
             <div style="display: inline-block;">
-              <%= button_to "Rechazar solicitud", rechazar_solicitud_path(solicitud)%>
+              <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud), class: "link"%>
+            </div>
+            <div style="display: inline-block;">
+              <%= button_to "Rechazar solicitud", rechazar_solicitud_path(solicitud), class: "link"%>
             </div>
           <% end %>
         <% end %>
@@ -79,7 +106,10 @@
               </div>
             <% elsif @turno.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
-                <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud)%>
+                <%= button_to "Ver reseñas", resenas_path(solicitud.usuario.id), method: :get, class: "link"%>
+              </div>
+              <div style="display: inline-block;">
+                <%= button_to "Aceptar solicitud", aceptar_solicitud_path(solicitud), class: "link"%>
               </div>
             <% end %>
           <% end %>
@@ -92,35 +122,47 @@
 
 <br/>
 
+
 <% if current_usuario.present? %>
   <% if @turno.usuario_en_turno(current_usuario.id)  %>
-    <p>CHAT</p>
+   <div class="bigDiv" style="border-radius:15px;width:550px;">
+    <%= image_tag("mensaje.png", size: "60x60") %>
+    <p style="font-family:Cambria;font-size:30px;display:inline-block;"><b>Ride chat </b></p>
+    <hr>
+
     <ul>
       <% @turno.mensajes.order(:updated_at).each do |mensaje| %>
-        <li><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></li>
+       <div class="bigDiv" style="border-radius:15px;height:auto;width:360px;background-color:#FFFFFF;">
+        <li><p style="font-family:Cambria;"><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></p></li>
+       </div>
       <% end %>
     <ul>
-
+        
+    <br>
     <%= form_with url: turno_mensajes_path(@turno) do |f| %>
       <%= f.text_field :mensaje %>
 
       <%= f.submit "Enviar mensaje" %>
     <% end %>
+   </div>
   <% end %>
 <% end %>
+
+
+<br>
 
 <% if current_usuario.present? %>
   <% if @turno.usuario.id == current_usuario.id %>
-    <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-      <%= link_to "Editar turno", edit_turno_path(@turno) %>
+    <div class="smallButton">
+      <%= link_to "Editar turno", edit_turno_path(@turno), class: "link" %>
     </div>
 
-    <div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-      <%= link_to "Eliminar turno", @turno, method: :delete %>
+    <div class="smallButton">
+      <%= link_to "Eliminar turno", @turno, method: :delete, class: "link" %>
     </div>
   <% end %>
 <% end %>
 
-<div style="background-color: #71a9c0; width:100px; height:auto;border: 3px solid;margin:auto;text-align:center;border-radius: 15px;">
-  <%= link_to "Volver", root_path %>
+<div class="smallButton">
+  <%= link_to "Volver", root_path, class: "link" %>
 </div>
