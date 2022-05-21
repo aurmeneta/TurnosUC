@@ -23,7 +23,7 @@
   <br><br><br>
 
 
-  <div style="text-align:center;>
+  <div style="text-align:center;">
     <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "link" %>
     <br><br>
     <%= button_to "Ver reseñas de usuario", resenas_path(@turno.usuario_id), method: :get , class: "link"%>
