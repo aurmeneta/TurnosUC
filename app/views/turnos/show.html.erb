@@ -132,7 +132,7 @@
 
     <ul>
       <% @turno.mensajes.order(:updated_at).each do |mensaje| %>
-       <div class="bigDiv" style="border-radius:15px;height:auto;width:360px;background-color:#FFFFFF;">
+       <div class="bigDiv" style="border-radius:15px;height:auto;width:360px;background-color:#FFFFFF;border:0px;">
         <li><p style="font-family:Cambria;"><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></p></li>
        </div>
       <% end %>
