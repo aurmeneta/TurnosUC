@@ -22,38 +22,38 @@ class ResenasController < ApplicationController
   end
 
   def edit
-    @resena = Resena.find(params[:id])
+    @resena = Resena.find(params[:resena_id])
 
-    redirect_to @turno, alert: 'No puedes editar esta reseña' if @resena.autor_id != current_usuario.id
+    redirect_to resenas_path(@resena.usuario_id), alert: 'No puedes editar esta reseña' if @resena.autor_id != current_usuario.id
   end
 
   def update
     # Comprobar si editor es publicador del turno
-    @resena = Resena.find(params[:id])
+    @resena = Resena.find(params[:resena_id])
 
     if @resena.autor_id == current_usuario.id
 
       if @resena.update(
         calificacion: resena_params[:calificacion],
-        descripcion: resena_params[:contenido]
+        contenido: resena_params[:contenido]
       )
-        redirect_to @turno, notice: 'Cambios guardados'
+        redirect_to resenas_path(@resena.usuario_id), notice: 'Cambios guardados'
       else
-        redirect_to @turno, alert: 'Error'
+        redirect_to resenas_path(@resena.usuario_id), alert: 'Error'
       end
     else
-      redirect_to @turno, alert: 'No puedes editar este elemento'
+      redirect_to resenas_path(@resena.usuario_id), alert: 'No puedes editar este elemento'
     end
   end
 
   def delete
-    resena = Resena.find(params[:id])
+    resena = Resena.find(params[:resena_id])
 
     if resena.autor_id == current_usuario.id
-      solicitud.destroy
-      redirect_to solicitud.turno
+      resena.destroy
+      redirect_to resenas_path(resena.usuario_id)
     else
-      redirect_to turnos, alert: 'Solo puedes eliminar reseñas tuyas'
+      redirect_to resenas_path(resena.usuario_id), alert: 'Solo puedes eliminar reseñas tuyas'
     end
   end
 

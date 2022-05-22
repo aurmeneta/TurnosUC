@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_19_224016) do
+ActiveRecord::Schema.define(version: 2022_05_22_001209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2022_05_19_224016) do
   end
 
   create_table "resenas", force: :cascade do |t|
-    t.float "calificacion"
+    t.integer "calificacion"
     t.string "contenido"
     t.integer "usuario_id"
     t.integer "autor_id"
