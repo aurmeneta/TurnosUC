@@ -32,6 +32,8 @@ Layout/EmptyLinesAroundMethodBody:
   Enabled: true
 Layout/ArrayAlignment:
   Enabled: true
+Layout/EndOfLine:
+   Enabled: False
 
 # Naming
 Naming/ConstantName:
@@ -100,6 +102,8 @@ Lint/EmptyExpression:
   Enabled: true
 Lint/ShadowedArgument:
   Enabled: true
+Lint/UselessAssignment:
+  Enabled: false
 
 # Metrics
 Metrics/BlockLength:
