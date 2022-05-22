@@ -24,7 +24,7 @@ class ResenasController < ApplicationController
   def edit
     @resena = Resena.find(params[:resena_id])
 
-    redirect_to @turno, alert: 'No puedes editar esta reseña' if @resena.autor_id != current_usuario.id
+    redirect_to resenas_path(@resena.usuario_id), alert: 'No puedes editar esta reseña' if @resena.autor_id != current_usuario.id
   end
 
   def update
@@ -37,12 +37,12 @@ class ResenasController < ApplicationController
         calificacion: resena_params[:calificacion],
         contenido: resena_params[:contenido]
       )
-        redirect_to turnos_path, notice: 'Cambios guardados'
+        redirect_to resenas_path(@resena.usuario_id), notice: 'Cambios guardados'
       else
-        redirect_to turnos_path, alert: 'Error'
+        redirect_to resenas_path(@resena.usuario_id), alert: 'Error'
       end
     else
-      redirect_to turnos_path, alert: 'No puedes editar este elemento'
+      redirect_to resenas_path(@resena.usuario_id), alert: 'No puedes editar este elemento'
     end
   end
 
@@ -51,9 +51,9 @@ class ResenasController < ApplicationController
 
     if resena.autor_id == current_usuario.id
       resena.destroy
-      redirect_to turnos_path
+      redirect_to resenas_path(resena.usuario_id)
     else
-      redirect_to turnos, alert: 'Solo puedes eliminar reseñas tuyas'
+      redirect_to resenas_path(resena.usuario_id), alert: 'Solo puedes eliminar reseñas tuyas'
     end
   end
 
