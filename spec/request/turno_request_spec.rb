@@ -29,9 +29,9 @@ RSpec.describe 'Turnos', type: :request do
       sign_in turno.usuario
       expect do
         post '/turnos/', params: {
-          dia: turno.dia,
+          fecha: turno.fecha,
           direccion_salida: turno.direccion_salida,
-          hora_salida: turno.hora_salida,
+          comuna: turno.comuna,
           tipo: turno.tipo,
           cupos: turno.cupos,
           campus: turno.campus
@@ -55,9 +55,9 @@ RSpec.describe 'Turnos', type: :request do
       turno.campus = 'San Joaquín'
       patch "/turnos/#{turno.id}", params: {
         turno: {
-          dia: turno.dia,
+          fecha: turno.fecha,
           direccion_salida: turno.direccion_salida,
-          hora_salida: turno.hora_salida,
+          comuna: turno.comuna,
           tipo: turno.tipo,
           cupos: turno.cupos,
           campus: turno.campus
