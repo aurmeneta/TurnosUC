@@ -1,5 +1,5 @@
 <div class="bigDiv" style="width:300px;">
-  <h1 style="font-family:Cambria;text-align:center;">Registro</h1>
+  <h1 style="text-align:center;">Registro</h1>
 </div>
 
 <div class="bigDiv" style="width:300px;text-align:center;">
@@ -17,7 +17,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :télefono%><br />
+    <%= f.label :teléfono%> (9 dígitos)<br />
     <%= f.text_field :telefono, autocomplete: "phone", required: true %>
   </div>
 
@@ -47,8 +47,10 @@
   <br/>
 
   <div class="actions">
-    <%= f.submit "Registrarse" %>
+    <%= f.submit "Registrarse", class: "link" %>
   </div>
+
+  <br>
 <% end %>
 </div>
 

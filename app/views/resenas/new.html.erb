@@ -1,13 +1,15 @@
-<div class="bigDiv" style="width:250px;">
-  <h1 style="font-family:Cambria;text-align:center;">Crear reseña</h1>
+<div class="bigDiv" style="width:280px;">
+  <h1 style="text-align:center;">Crear reseña</h1>
 </div>
 
 <br/>
 
-<div class="bigDiv" style="width:400px;border-radius:15px;">
+<div class="bigDiv" style="width:400px;">
 <%= form_with url: resenas_path(params[:usuario_id]) do |f| %>
+    <div style="text-align:center">
     <%= f.label :usuario %>
     <%= f.label Usuario.find(params[:usuario_id]).nombre %>
+    </div>
 
     <br/>
     <%= f.label :calificación %>
@@ -19,7 +21,9 @@
     
     <br/>
     <br/>
+    <div style="text-align:center">
     <%= f.submit "Crear reseña", class: "link" %>
+    </div>
 <% end %>
 </div>
 
