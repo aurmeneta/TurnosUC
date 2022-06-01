@@ -8,16 +8,16 @@
 <%= form_with url: turnos_path do |f| %>
 
 
-    <%= f.label :día %>
-    <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
-
-    <br/>
-    <%= f.label :hora_salida %>
-    <%= f.time_field :hora_salida, :required => true %>
+    <%= f.label :fecha %>
+    <%= f.datetime_field :fecha, :required => true %>
 
     <br/>
     <%= f.label "Dirección origen/destino" %>
     <%= f.text_field :direccion_salida, :required => true %>
+    
+    <br/>
+    <%= f.label "Comuna origen/destino" %>
+    <%= f.text_field :comuna, :required => true %>
 
     <br/>
     <%= f.label "Campus origen/destino" %>
@@ -26,7 +26,6 @@
     <br/>
     <%= f.label :tipo %>
     <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %>
-
 
     <br/>
     <%= f.label :cupos %>

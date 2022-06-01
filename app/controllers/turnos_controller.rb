@@ -9,9 +9,9 @@ class TurnosController < ApplicationController
 
   def create
     @turno = Turno.new(
-      dia: params[:dia],
+      fecha: params[:fecha],
       direccion_salida: params[:direccion_salida],
-      hora_salida: params[:hora_salida],
+      comuna: params[:comuna],
       tipo: params[:tipo],
       cupos: params[:cupos],
       campus: params[:campus],
@@ -53,9 +53,9 @@ class TurnosController < ApplicationController
     if @turno.usuario_id == current_usuario.id
 
       if @turno.update(
-        dia: turno_params[:dia],
+        comuna: turno_params[:comuna],
         direccion_salida: turno_params[:direccion_salida],
-        hora_salida: turno_params[:hora_salida],
+        fecha: turno_params[:fecha],
         tipo: turno_params[:tipo],
         cupos: turno_params[:cupos],
         campus: turno_params[:campus]

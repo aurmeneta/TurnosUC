@@ -12,9 +12,14 @@
   </div>
   <p>    </p>
   <div style="float:left;display:inline-block;">
-    <p style="font-family:Cambria;">• Fecha: <%= @turno.dia %> a las <%= @turno.hora_salida.strftime('%H:%M') %> </p> 
+    <% if @turno.fecha %>
+    <p style="font-family:Cambria;">• Fecha: <%= l(@turno.fecha, format: '%A, %d/%m %H:%M') %> </p>
+    <% else %>
+      <p style="font-family:Cambria;">• Día: <%= @turno.dia %> </p>
+      <p style="font-family:Cambria;">• Hora: <%= @turno.hora_salida.strftime('%H:%M') %> </p>
+    <% end %>
     <p style="font-family:Cambria;">• Tipo: <%= @turno.tipo %></p>
-    <p style="font-family:Cambria;">• Dirección: <%= @turno.direccion_salida %></p>
+    <p style="font-family:Cambria;">• Dirección: <%= @turno.direccion_salida %>, <%= @turno.comuna %></p>
     <p style="font-family:Cambria;">• Campus: <%= @turno.campus %></p>
     <p style="font-family:Cambria;">Este turno posee <%= @turno.cupos %> cupos.</p>
   

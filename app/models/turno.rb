@@ -5,9 +5,7 @@ class Turno < ApplicationRecord
   has_many :solicituds
   has_many :mensajes
 
-  validates :usuario_id, :direccion_salida, presence: true
-  validates :dia, inclusion: { in: %w[Lunes Martes Miércoles Jueves Viernes Sabádo] }
-  validates :hora_salida, format: { with: /[0-9]{1,2}:[0-9]{2}/ }
+  validates :usuario_id, :direccion_salida, :comuna, :fecha, presence: true
   validates :tipo, inclusion: { in: %w[Ida Vuelta] }
   validates :cupos, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :campus, inclusion: { in: ['San Joaquín', 'Casa Central', 'Oriente', 'Lo Contador', 'Villarrica'] }
@@ -24,10 +22,14 @@ class Turno < ApplicationRecord
   end
 
   def to_s
-    if tipo == 'Ida'
-      "Turno ##{id} #{tipo} de #{direccion_salida} a #{campus}"
+    if fecha and tipo == 'Ida'
+      "#{I18n.l(fecha, format: '<%a %d/%m %H:%M>')} Turno ##{id} de #{direccion_salida}, #{comuna} a #{campus}"
+    elsif fecha
+      "#{fecha.strftime('<%a %d/%m %H:%M>')} Turno ##{id} el #{fecha} de #{campus} #{direccion_salida}, #{comuna}"
+    elsif tipo == 'Ida'
+      "<#{dia}> Turno ##{id} de #{direccion_salida}, #{comuna} a #{campus}"
     else
-      "Turno ##{id} #{tipo} de #{campus} #{direccion_salida}"
+      "<#{dia}> Turno ##{id} el #{fecha} de #{campus} #{direccion_salida}, #{comuna}"
     end
   end
 end

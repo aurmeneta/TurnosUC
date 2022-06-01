@@ -8,20 +8,19 @@
       <% end %>
 </ul>
 
-<div class="bigDiv" style="width:300px;border-radius: 15px;">
+<div class="bigDiv" style="width:500px;border-radius: 15px;">
 <%= form_with model: @turno, action: 'update' do |f| %>
 
-
-    <span>&#8226;</span><%= f.label :día%>
-    <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
-
-    <br/>
-    <span>&#8226;</span><%= f.label :hora_salida%>
-    <%= f.time_field :hora_salida, :required => true %>
+    <span>&#8226;</span><%= f.label :fecha%>
+    <%= f.datetime_field :fecha, :required => true %>
 
     <br/>
-    <span>&#8226;</span><%= f.label :dirección_salida%>
+    <span>&#8226;</span><%= f.label "Dirección origen/destino" %>
     <%= f.text_field :direccion_salida, :required => true %>
+
+    <br/>
+    <span>&#8226;</span><%= f.label "Comuna origen/destino" %>
+    <%= f.text_field :comuna, :required => true %>
 
     <br/>
     <span>&#8226;</span><%= f.label :campus_destino%>
