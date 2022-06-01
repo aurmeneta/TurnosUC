@@ -6,7 +6,7 @@
 
 <div class="bigDiv" style="width:300px;;text-align:center;">
   <%= form_with url: turnos_path do |f| %>
-
+    <br/>
     <%= f.label :fecha %><br>
     <%= f.datetime_field :fecha, :required => true %><br><br>
 
@@ -14,9 +14,9 @@
     <%= f.label "Dirección origen/destino" %><br/>
     <%= f.text_field :direccion_salida, :required => true %><br/><br/>
 
-    <br/>
-    <%= f.label "Comuna origen/destino" %>
-    <%= f.text_field :comuna, :required => true %>
+
+    <%= f.label "Comuna origen/destino" %><br/>
+    <%= f.text_field :comuna, :required => true %><br/><br/>
 
 
     <%= f.label "Campus origen/destino" %><br/>
