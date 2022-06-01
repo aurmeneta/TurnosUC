@@ -11,6 +11,13 @@ class Turno < ApplicationRecord
   validates :tipo, inclusion: { in: %w[Ida Vuelta] }
   validates :cupos, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :campus, inclusion: { in: ['San Joaquín', 'Casa Central', 'Oriente', 'Lo Contador', 'Villarrica'] }
+  validate :fecha_must_be_in_the_future
+
+  def fecha_must_be_in_the_future
+    if fecha.present? and fecha < Time.now
+      errors.add :fecha, 'no puede ser en el pasado'
+    end
+  end
 
   def usuario_en_turno(id_usuario)
     if usuario.id == id_usuario
@@ -32,7 +39,7 @@ class Turno < ApplicationRecord
       url_maps += "&origin=Campus #{campus} UC&destination=#{direccion_salida},#{comuna}"
     end
 
-    if fecha
+    if fecha and fecha > Time.now
       url_maps += "&departure_time=#{fecha.to_i}"
     else
       url_maps += "&departure_time=now"
@@ -47,7 +54,7 @@ class Turno < ApplicationRecord
         duracion_texto = response['routes'].first['legs'].first['duration_in_traffic']['text']
         duracion_segundos = response['routes'].first['legs'].first['duration_in_traffic']['value']
 
-        if fecha
+        if fecha and fecha > Time.now
           (fecha + duracion_segundos).strftime('%H:%M') + " (#{duracion_texto} de viaje)"
         else
           duracion_texto + ' de viaje'
