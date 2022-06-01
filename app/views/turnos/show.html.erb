@@ -4,7 +4,7 @@
 
 <br/>
 
-<div class="bigDiv" style="height:280px;width:700px;padding:5px 5px 5px 5px;">
+<div class="bigDiv" style="height:340px;width:1000px;padding:5px 5px 5px 5px;">
 
   <div class="creadorTurno">
     <img src=<%= @turno.usuario.imagen_perfil %>  width="150" height="150" style="border-radius:50%;box-shadow:5px 5px;margin-bottom:5px;">  
@@ -29,6 +29,7 @@
     <p>• Tipo: <%= @turno.tipo %></p>
     <p>• Dirección: <%= @turno.direccion_salida %>, <%= @turno.comuna %></p>
     <p>• Campus: <%= @turno.campus %></p>
+    <p>• Hora de llegada aproximada: <%= @turno.hora_llegada %></p>
     <p>Este turno posee <%= @turno.cupos %> cupos.</p>
   </div>
 
