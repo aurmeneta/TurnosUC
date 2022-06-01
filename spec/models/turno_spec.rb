@@ -4,19 +4,18 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe Turno, type: :model do
+  let(:usuario) { create(:usuario)}
   before(:each) do
-    @usuario = Usuario.new(id: 1, email: Faker::Internet.email, nombre: Faker::Name.name,
-                           imagen_perfil: Faker::Internet.url, direccion: Faker::Address.full_address, telefono: '912345678', password: 'abcdefg')
-    @turno = Turno.new(id: 1, dia: 'Lunes', direccion_salida: Faker::Address.full_address, hora_salida: '12:00:00',
-                       tipo: 'Ida', cupos: 4, campus: 'San Joaquín', created_at: nil, updated_at: nil, usuario: @usuario)
+    @turno = Turno.new(id: 1, fecha: Faker::Date.forward, direccion_salida: Faker::Address.street_address, comuna: Faker::Address.city,
+                       tipo: 'Ida', cupos: 4, campus: 'San Joaquín', created_at: nil, updated_at: nil, usuario_id: usuario.id)
   end
 
   it 'is valid with valid attributes' do
     expect(@turno).to be_valid
   end
 
-  it 'is not valid with no day' do
-    @turno.dia = nil
+  it 'is not valid with no comuna' do
+    @turno.comuna = nil
     expect(@turno).not_to be_valid
   end
 
@@ -30,8 +29,8 @@ RSpec.describe Turno, type: :model do
     expect(@turno).not_to be_valid
   end
 
-  it 'is not valid without time' do
-    @turno.hora_salida = nil
+  it 'is not valid without date' do
+    @turno.fecha = nil
     expect(@turno).not_to be_valid
   end
 

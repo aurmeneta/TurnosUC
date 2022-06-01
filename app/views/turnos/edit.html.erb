@@ -1,44 +1,49 @@
-<div class="bigDiv" style="width:250px;">
-  <h1 style="font-family:Cambria;text-align:center;">Editar turno <%= @turno.id %></h1>
+<div class="bigDiv" style="width:300px;">
+  <h1 style="text-align:center;">Editar turno</h1>
 </div>
 
 <ul>
-      <% @turno.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+  <% @turno.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
 </ul>
 
-<div class="bigDiv" style="width:300px;border-radius: 15px;">
+<div class="bigDiv" style="width:300px;text-align:center;">
 <%= form_with model: @turno, action: 'update' do |f| %>
 
-
-    <span>&#8226;</span><%= f.label :día%>
-    <%= f.select :dia, ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabádo"], :required => true %>
-
-    <br/>
-    <span>&#8226;</span><%= f.label :hora_salida%>
-    <%= f.time_field :hora_salida, :required => true %>
+    <br>
+    <%= f.label :fecha %><br>
+    <%= f.datetime_field :fecha, :required => true %><br>
 
     <br/>
-    <span>&#8226;</span><%= f.label :dirección_salida%>
-    <%= f.text_field :direccion_salida, :required => true %>
+    <%= f.label "Dirección origen/destino" %><br>
+    <%= f.text_field :direccion_salida, :required => true %><br>
 
     <br/>
-    <span>&#8226;</span><%= f.label :campus_destino%>
-    <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %>
+    <%= f.label "Comuna origen/destino" %><br>
+    <%= f.text_field :comuna, :required => true %><br>
 
     <br/>
-    <span>&#8226;</span><%= f.label :tipo%>
-    <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %>
+    <%= f.label :campus_destino%><br>
+    <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %><br>
+
+    <br/>
+    <%= f.label :tipo%><br>
+    <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %><br>
 
 
     <br/>
-    <span>&#8226;</span><%= f.label :cupos%>
-    <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
+    <%= f.label :cupos%><br>
+    <%= f.number_field :cupos, min: 1, step: 1, :required => true %><br>
     
     <br/>
     <br/>
-    <%= f.submit "Guardar turno" %>
+
+    <div style="text-align:center;">
+      <%= f.submit "Guardar turno", class: "link" %>
+    </div>
+
+    <br>
 <% end %>
 </div>
 

@@ -1,21 +1,24 @@
-<div class="bigDiv" style="width:250px;">
-  <h1 style="font-family:Cambria;text-align:center;">Editar reseña <%= @resena.id %></h1>
+<div class="bigDiv" style="width:300px;">
+  <h1 style="text-align:center;">Editar reseña</h1>
 </div>
 
-<div class="bigDiv" style="width:300px;">
+<div class="bigDiv" style="width:400px;">
+<br>
 <%= form_with model: @resena, action: 'update' do |f| %>
 
 
-    <span>&#8226;</span><%= f.label :calificacion%>
+    <%= f.label :calificacion%>
     <%= f.select :calificacion, [1, 2, 3, 4, 5], :required => true %>
 
     <br/>
-    <span>&#8226;</span><%= f.label :descripcion%>
+    <%= f.label :descripcion%>
     <%= f.text_field :contenido, :required => true %>
     
     <br/>
     <br/>
-    <%= f.submit "Guardar reseña" %>
+    <div style="text-align:center">
+    <%= f.submit "Guardar reseña", class: "link" %>
+    </div>
 <% end %>
 </div>
 

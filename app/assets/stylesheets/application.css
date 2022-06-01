@@ -14,9 +14,50 @@
  *= require_self
  */
  
+
 h1 {
   font-weight:bold;
   color:black;
+  font-family:Cambria,Georgia,serif;
+  text-align:center;
+}
+
+h3 {
+  font-family:Cambria,Georgia,serif;
+  text-align:center;
+  color:black;
+}
+
+p {
+  color:black;
+  font-family:Cambria,Georgia,serif;
+}
+
+.logo {
+  margin:auto;
+  background-color:#065472;
+  text-align:center;
+  border-radius:15px;
+  width:300px;
+  height:85px;
+  float:left;
+}
+
+.footer {
+  width:100%;
+  bottom: 0;
+  right: 0;
+  position:fixed;
+}
+
+.buscarTurno {
+  height:auto;
+  margin:auto;
+  border-radius: 15px;
+  width:500px;
+  text-align:center;
+  background-color:transparent;
+  box-shadow:5px 5px 5px 5px;
 }
 
 .bigDiv {
@@ -27,10 +68,33 @@ h1 {
   box-shadow: 5px 5px;
   margin:auto;
   border-radius: 15px;
+  padding: 2px 2px 2px 2px;
 }
 
-.button {
-  background-color: #71a9c0; 
+.publicaciones {
+  width:530px;
+  vertical-align:top;
+  background-color: #71a9c0;  
+  height:auto;
+  box-shadow: 5px 5px;
+  margin:auto;
+  border-radius:15px;
+  padding: 5px 5px 5px 5px;
+}
+
+.bigDiv:hover, .publicaciones:hover {
+  background-color: #54A3C3;
+}
+
+.navBar {
+  width:auto;
+  height:85px;
+  background-color:#065472;
+  vertical-align:top;
+}
+
+.navButton {
+  background-image: linear-gradient(#71a9c0, #D0E0E7); 
   width:130px; 
   height:40px;
   border: 1px;
@@ -41,55 +105,104 @@ h1 {
   vertical-align:middle;
   float:right;
   box-shadow: 0px 3px;
+  padding:5px 5px 5px 5px;
+  margin-right: 3px;
+}
+
+.navButtons {
+  display:inline-block;
+  float:right;
+}
+
+
+.datosTurno {
+  float:left;
+  display:inline-block;
+  border-left: 1px solid black;
+  margin-left: 5px; 
+  padding: 5px 5px 5px 5px;
+  height:90%;
+}
+
+.creadorTurno {
+  float:left;
+  display:inline-block;
+  vertical-align:middle;
+  margin-right:20px;
+  margin-left:20px;
+  padding: 0px 5px 0px 0px;
 }
 
 
 .smallButton {
   background-color: #71a9c0;
-  width:110px; 
+  width:120px; 
   height:auto;
   box-shadow: 0px 3px;
   margin:auto;
   text-align:center;
   border-radius: 15px;
+  margin-bottom: 7px;
 }
 
-.button:hover, .smallButton:hover {
+.smallButtons {
+  display:flex;
+  width:300px;
+  margin:auto;
+}
+
+.navButton:hover {
+  background-image: linear-gradient(#71a9c0, #FFFFFF);
+}
+
+.smallButton:hover {
   background-color: #ADD5E6;
 }
 
-.navBar {
-  width:auto;
-  height:85px;
-  background-color:#065472;
-  vertical-align:top;
-}
 
 .link {
-  font-family:Cambria;
+  font-family:Cambria,Georgia,serif;
   font-size:15px;
   color:#065472;
   font-weight:bold;
   vertical-align:middle;
+  margin-bottom: 5px;
 }
 
-.publicacion {
-  width:480px;
-  border-radius:15px;
-  vertical-align:top;
-  background-color: #71a9c0;  
-  height:auto;
+.linkverde {
+  font-family:Cambria,Georgia,serif;
+  font-size:15px;
+  color:green;
+  font-weight:bold;
+  vertical-align:middle;
+}
+
+.linkSolicitar {
+  font-family:Cambria,Georgia,serif;
+  font-size:25px;
+  color:green;
+  font-weight:bold;
+  vertical-align:middle;
+}
+
+
+.mensajeChat {
   box-shadow: 5px 5px;
   margin:auto;
-  border: 1px solid black;
+  border-radius:15px;
+  height:auto;
+  width:90%;
+  background-color:#FFFFFF;
 }
 
-.bigDiv:hover, .publicacion:hover {
-  background-color: #54A3C3;
+.salirDelTurno {
+  display: inline-block;
+  border:2px solid black;
+  border-radius:15px;
+  padding:5px 5px 5px 5px;
+  margin-left:2px;
 }
 
-.texto {
-  font-family:Cambria;
-  font-size:20px;
-  color:#065472;
-}
+
+
+

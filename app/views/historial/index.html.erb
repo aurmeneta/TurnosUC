@@ -1,11 +1,11 @@
-<div class="bigDiv" style="width:350px;text-align:center;border-radius:15px;">
-  <h1 style="font-family:Cambria;text-align:center;">Historial</h1>
+<div class="bigDiv" style="width:350px;text-align:center;">
+  <h1>Mis Turnos</h1>
 </div>
 
 <br>
 
-<div class="bigDiv" style="border-radius:15px;">
-    <p style="font-family:Cambria;">Turnos que has publicado:</p>
+<div class="bigDiv">
+    <p>Turnos que has publicado:</p>
     <ul>
         <% @turnos.each do |turno| %>
             <li><%= link_to "#{turno}", turno, class: "link" %></li>
@@ -15,7 +15,7 @@
 
 <br>
 
-<div class="bigDiv" style="border-radius:15px;">
+<div class="bigDiv">
     <p style="font-family:Cambria;">Solicitudes aceptadas:</p>
     <ul>
         <% @solicitudes_aceptadas.each do |solicitud| %>
@@ -26,7 +26,7 @@
 
 <br>
 
-<div class="bigDiv" style="border-radius:15px;">
+<div class="bigDiv">
     <p style="font-family:Cambria;">Solicitudes pendientes:</p>
     <ul>
         <% @solicitudes_pendientes.each do |solicitud| %>
@@ -37,7 +37,7 @@
 
 <br>
 
-<div class="bigDiv" style="border-radius:15px;">
+<div class="bigDiv">
     <p style="font-family:Cambria;">Solicitudes rechazadas:</p>
     <ul>
         <% @solicitudes_rechazadas.each do |solicitud| %>
