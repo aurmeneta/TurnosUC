@@ -8,53 +8,65 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style> body {background-image: url("<%= asset_path('fondo.png') %>");
-                  background-size: cover;} 
+                  background-size: cover;
+                  height:100vh;} 
     </style>
   </head>
 
   <body>
+
     <div class="navBar">
 
-    <div class="bigDiv" style="background-color:#065472;text-align:center;border-radius:15px;width:260px;height:85px;float:left;box-shadow: 0px 0px;border:0px;">
-       <div style="vertical-align:top;display: inline-block;">
-         <%= image_tag("logo.png", size: "70x70") %>
-       </div>
-       <h1 style="font-family:Cambria;font-size:35px;display: inline-block;vertical-align:bottom;">Turnos UC‏‏‏‎ ‏‎ ‎‏‏‎</h1>
-    </div>
+      <div class="logo">
+         <div style="vertical-align:top;display: inline-block;">
+           <%= image_tag("logo.png", size: "70x70") %>
+         </div>
+         <h1 style="font-size:35px;display:inline-block;vertical-align:bottom;">Turnos UC‏‏‏‎ ‏‎ ‎‏‏‎</h1>
+      </div>
  
+      <div class="navButtons">
 
-    <% if current_usuario %>
-      <br>
-      <div class="button">
-        <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete, class: "link" %>
+      <% if current_usuario %>
+        <br>
+        <div class="navButton">
+          <%= link_to "Cerrar Sesión", destroy_usuario_session_path, method: :delete, class: "link" %>
+        </div>
+        <div class="navButton">
+          <%= link_to "Mis turnos", historial_path, class: "link" %>
+        </div>
+        <div class="navButton">
+          <%= link_to "Mi perfil", edit_usuario_registration_path, class: "link" %>
+        </div>
+        <div class="navButton">
+          <%= link_to "Inicio", root_path, class: "link" %>
+        </div>
+      <% else %>
+        <br>
+        <div class="navButton">
+          <%= link_to "Registrarme", new_usuario_registration_path, class: "link" %>
+        </div>
+        <div class="navButton">
+          <%= link_to "Iniciar Sesión", new_usuario_session_path, class: "link" %>
+        </div>
+      <% end %>
       </div>
-      <div class="button">
-        <%= link_to "Ver historial", historial_path, class: "link" %>
-      </div>
-      <div class="button">
-        <%= link_to "Ver perfil", edit_usuario_registration_path, class: "link" %>
-      </div>
-      <div class="button">
-        <%= link_to "Inicio", root_path, class: "link" %>
-      </div>
-    <% else %>
-      <br>
-      <div class="button">
-        <%= link_to "Registrarme", new_usuario_registration_path, class: "link" %>
-      </div>
-      <div class="button" style="vertical-align:bottom;">
-        <%= link_to "Iniciar Sesión", new_usuario_session_path, class: "link" %>
-      </div>
-    <% end %>
 
     </div>
 
+    <br> 
+    
+    <p class="notice" style="text-align:center;"><%= notice %></p>
+    <p class="alert" style="text-align:center;"><%= alert %></p>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
     <%= yield %>
     
+
+    <br>
+
+    <div class="footer">
+      <p align="right" style="font-size:10px;">   © 2022 Pontificia Universidad Católica de Chile  ‏‎ ‎‏‏‎ ‏‎ ‎‏‏‎</p>
+    </div>
 
   </body>
 </html>

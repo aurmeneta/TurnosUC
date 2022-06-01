@@ -1,40 +1,41 @@
-<div class="bigDiv" style="width:250px;">
-  <h1 style="font-family:Cambria;text-align:center;">Crear turno</h1>
+<div class="bigDiv" style="width:270px;">
+  <h1>Crear turno</h1>
 </div>
 
 <br/>
 
-<div class="bigDiv" style="width:400px;border-radius: 15px;">
-<%= form_with url: turnos_path do |f| %>
+<div class="bigDiv" style="width:300px;;text-align:center;">
+  <%= form_with url: turnos_path do |f| %>
 
+    <%= f.label :fecha %><br>
+    <%= f.datetime_field :fecha, :required => true %><br><br>
 
-    <%= f.label :fecha %>
-    <%= f.datetime_field :fecha, :required => true %>
-
-    <br/>
-    <%= f.label "Dirección origen/destino" %>
-    <%= f.text_field :direccion_salida, :required => true %>
     
+    <%= f.label "Dirección origen/destino" %><br/>
+    <%= f.text_field :direccion_salida, :required => true %><br/><br/>
+
     <br/>
     <%= f.label "Comuna origen/destino" %>
     <%= f.text_field :comuna, :required => true %>
 
-    <br/>
-    <%= f.label "Campus origen/destino" %>
-    <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %>
 
-    <br/>
-    <%= f.label :tipo %>
-    <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %>
+    <%= f.label "Campus origen/destino" %><br/>
+    <%= f.select :campus, ["San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], :required => true %><br/><br/>
 
-    <br/>
-    <%= f.label :cupos %>
-    <%= f.number_field :cupos, min: 1, step: 1, :required => true %>
+
+    <%= f.label :tipo %><br/>
+    <%= f.select :tipo, ["Ida", "Vuelta"], :required => true %><br/><br/>
+
+
+    
+    <%= f.label :cupos %><br/>
+    <%= f.number_field :cupos, min: 1, step: 1, :required => true %><br/>
     
     <br/>
     <br/>
-    <%= f.submit "Crear turno" %>
-<% end %>
+    <%= f.submit "Crear turno", class: "link" %>
+    <br>
+  <% end %>
 </div>
 
 <br/>

@@ -1,11 +1,11 @@
-<div class="bigDiv" style="width:350px;text-align:center;border-radius:15px;">
-  <h1 style="font-family:Cambria;text-align:center;">Busca una publicación:</h1>
+<div class="buscarTurno">
+  <h1>Busca un turno:</h1>
 </div>
 
 <br>
 
-<div class="publicacion">
-  <p style="font-family:Cambria"><b>Turnos de ida:</b></p>
+<div class="publicaciones">
+  <p>Turnos de ida:</p>
   <ul>
     <% @turnos.each do |turno| %>
       <% if turno.tipo == "Ida" %> 
@@ -17,8 +17,8 @@
 
 <br>
 
-<div class="publicacion">
-  <p style="font-family:Cambria"><b>Turnos de vuelta:</b></p>
+<div class="publicaciones">
+  <p>Turnos de vuelta:</p>
   <ul>
     <% @turnos.each do |turno| %>
       <% if turno.tipo == "Vuelta" %>
@@ -28,7 +28,7 @@
   </ul>
 </div>
 
-<br><br>
+<br>
 
 <div class="smallButton">
   <%= link_to "Crear turno", new_turno_path, class: "link" %>
