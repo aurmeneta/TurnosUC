@@ -27,6 +27,7 @@ class TurnosController < ApplicationController
 
   def show
     @turno = Turno.find(params[:id])
+    @maps_url = URI.encode("https://www.google.com/maps/embed/v1/place?key=#{ENV['GMAPS_KEY']}&q=#{@turno.direccion_salida},#{@turno.comuna}")
   end
 
   def destroy
