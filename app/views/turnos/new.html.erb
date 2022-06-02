@@ -5,8 +5,17 @@
 <br/>
 
 <div class="bigDiv" style="width:300px;;text-align:center;">
-  <%= form_with url: turnos_path do |f| %>
-    <br/>
+  <%= form_with model: @turno, local: true do |f| %>
+    <% if @turno.errors.any? %>
+      No se pudo crear el turno
+
+      <ul>
+        <% @turno.errors.full_messages.each do |message|%>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <%= f.label :fecha %><br>
     <%= f.datetime_field :fecha, :required => true %><br><br>
 
