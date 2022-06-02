@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
 class TurnosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: %w[index show]
+  skip_before_action :authenticate_usuario!, only: :index
 
   def index
     @turnos = Turno.all
   end
 
-  def create
-    @turno = Turno.new(
-      fecha: params[:fecha],
-      direccion_salida: params[:direccion_salida],
-      comuna: params[:comuna],
-      tipo: params[:tipo],
-      cupos: params[:cupos],
-      campus: params[:campus],
-      usuario_id: current_usuario.id
-    )
+  def new
+    @turno = Turno.new
+  end
 
-    if @turno.save
-      redirect_to @turno
-    else
-      render :new, status: 422
+  def create
+    @turno = Turno.new(turno_params)
+    @turno.usuario = current_usuario
+
+    respond_to do |format|
+      if @turno.save
+        format.html { redirect_to turno_url(@turno), notice: "Se creó el turno" }
+      else
+        format.html { render :new, status: 422 }
+      end
     end
   end
 
   def show
     @turno = Turno.find(params[:id])
+    @maps_url = URI.encode("https://www.google.com/maps/embed/v1/place?key=#{ENV['GMAPS_KEY']}&q=#{@turno.direccion_salida},#{@turno.comuna}")
   end
 
   def destroy
@@ -51,18 +51,12 @@ class TurnosController < ApplicationController
     @turno = Turno.find(params[:id])
 
     if @turno.usuario_id == current_usuario.id
-
-      if @turno.update(
-        comuna: turno_params[:comuna],
-        direccion_salida: turno_params[:direccion_salida],
-        fecha: turno_params[:fecha],
-        tipo: turno_params[:tipo],
-        cupos: turno_params[:cupos],
-        campus: turno_params[:campus]
-      )
-        redirect_to @turno, notice: 'Cambios guardados'
-      else
-        redirect_to @turno, alert: @turno.errors.full_messages
+      respond_to do |format|
+        if @turno.update(turno_params)
+          format.html { redirect_to @turno, notice: 'Cambios guardados' }
+        else
+          format.html { render :edit, status: 422 }
+        end
       end
     else
       redirect_to @turno, alert: 'No puedes editar este elemento'
@@ -72,6 +66,6 @@ class TurnosController < ApplicationController
   private
 
   def turno_params
-    params.require(:turno)
+    params.require(:turno).permit([:fecha, :direccion_salida, :comuna, :campus, :tipo, :cupos])
   end
 end

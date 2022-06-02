@@ -2,16 +2,18 @@
   <h1 style="text-align:center;">Editar turno</h1>
 </div>
 
-<ul>
-  <% @turno.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-
 <div class="bigDiv" style="width:300px;text-align:center;">
-<%= form_with model: @turno, action: 'update' do |f| %>
-
-    <br>
+<%= form_with model: @turno, local: true, action: 'update' do |f| %>
+    <% if @turno.errors.any? %>
+      <h5>No se pudo guardar el turno</h5>
+      
+      <ul>
+        <% @turno.errors.full_messages.each do |message|%>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    
     <%= f.label :fecha %><br>
     <%= f.datetime_field :fecha, :required => true %><br>
 

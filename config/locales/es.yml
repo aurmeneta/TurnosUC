@@ -2,3 +2,20 @@ es:
   date:
     day_names: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
     abbr_day_names: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+  activerecord:
+    errors:
+      models:
+        turno:
+          attributes:
+            direccion_salida:
+              blank: "no puede estar vacío"
+            comuna:
+              blank: "no puede estar vacía"
+            fecha:
+              blank: "no puede estar vacía"
+            tipo:
+              inclusion: "no es válido"
+            cupos:
+              not_a_number: "no es un número"
+            campus:
+              inclusion: "Campus no es válido"

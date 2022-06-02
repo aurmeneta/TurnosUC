@@ -4,7 +4,7 @@
 
 <br/>
 
-<div class="bigDiv" style="height:280px;width:700px;padding:5px 5px 5px 5px;">
+<div class="bigDiv" style="height:280px;width:900px;padding:5px 5px 5px 5px;">
 
   <div class="creadorTurno">
     <img src=<%= @turno.usuario.imagen_perfil %>  width="150" height="150" style="border-radius:50%;box-shadow:5px 5px;margin-bottom:5px;">  
@@ -15,8 +15,6 @@
       <%= button_to "Dejarle una reseña", new_resena_path(@turno.usuario_id), method: :get, class: "link" %>
     <% end %>
   </div>
-
-  <p>    </p>
 
   <div class="datosTurno">
 
@@ -29,6 +27,7 @@
     <p>• Tipo: <%= @turno.tipo %></p>
     <p>• Dirección: <%= @turno.direccion_salida %>, <%= @turno.comuna %></p>
     <p>• Campus: <%= @turno.campus %></p>
+    <p>• Hora de llegada aproximada: <%= @turno.hora_llegada %></p>
     <p>Este turno posee <%= @turno.cupos %> cupos.</p>
   </div>
 
@@ -40,9 +39,22 @@
   <div style="text-align:center;">
     <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "linkSolicitar" %>
   </div>
-
 </div>
 
+
+<br>
+
+<div style="width:700px;margin:auto;">
+  <iframe
+    width="700"
+    height="300"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src= <%= @maps_url %>>
+  </iframe>
+</div>
 
 <br>
 
