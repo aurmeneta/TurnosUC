@@ -2,6 +2,8 @@ es:
   date:
     day_names: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
     abbr_day_names: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+    month_names: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    abbr_month_names: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
   activerecord:
     errors:
       models:
@@ -19,3 +21,8 @@ es:
               not_a_number: "no es un número"
             campus:
               inclusion: "Campus no es válido"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%b %d %H:%M"
+      long: "%Y/%m/%d %H:%M:%S"
