@@ -6,21 +6,26 @@ es:
     abbr_month_names: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
   activerecord:
     errors:
+      messages:
+        blank: "no puede estar vacío"
+        required: "es requerido"
+        not_a_number: "no es un número"
+        greater_than_or_equal_to: "tiene que ser mayor o igual a %{count}"
+        less_than_or_equal_to: "tiene que ser menor o igual a %{count}"
+        inclusion: "no es válido"
+        invalid: "no es válido"
       models:
         turno:
           attributes:
-            direccion_salida:
-              blank: "no puede estar vacío"
-            comuna:
-              blank: "no puede estar vacía"
-            fecha:
-              blank: "no puede estar vacía"
             tipo:
-              inclusion: "no es válido"
-            cupos:
-              not_a_number: "no es un número"
+              inclusion: "no es válido. Debe ser Ida o Vuelta"
             campus:
-              inclusion: "Campus no es válido"
+              inclusion: "no es válido. Debe ser San Joaquín, Casa Central, Oriente, Lo Contador o Villarrica"
+        solicitud:
+          attributes:
+            descripcion:
+              inclusion: "no es válido. Debe ser Aceptada, Pendiente o Rechazada"
+
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

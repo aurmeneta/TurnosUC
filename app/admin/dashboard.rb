@@ -52,7 +52,7 @@ ActiveAdmin.register_page "Dashboard" do
     column do
       panel 'Usuarios' do
         ul do
-          Usuario.all.map do |usuario|
+          Usuario.all.order(:id).map do |usuario|
             li link_to(usuario, admin_usuario_path(usuario))
           end
         end
