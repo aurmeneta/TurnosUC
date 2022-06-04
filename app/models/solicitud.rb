@@ -8,6 +8,6 @@ class Solicitud < ApplicationRecord
   validates :usuario, :turno, presence: true
 
   def to_s
-    "Solititud ##{id} para #{turno}"
+    "Solicitud ##{id} para #{turno} de #{usuario}"
   end
 end
