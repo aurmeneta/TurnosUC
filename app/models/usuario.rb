@@ -15,4 +15,8 @@ class Usuario < ApplicationRecord
   has_many :mensajes
   has_many :resenas, class_name: 'Resena', foreign_key: :usuario_id
   has_many :resenas_escritas, class_name: 'Resena', foreign_key: :autor_id
+
+  def to_s
+    "[#{id}] #{nombre} (#{email})"
+  end
 end

@@ -66,6 +66,6 @@ class TurnosController < ApplicationController
   private
 
   def turno_params
-    params.require(:turno).permit([:fecha, :direccion_salida, :comuna, :campus, :tipo, :cupos])
+    params.require(:turno).permit([:fecha, :direccion_salida, :comuna, :campus, :tipo, :cupos, :hora_salida, :dia, :usuario_id])
   end
 end
