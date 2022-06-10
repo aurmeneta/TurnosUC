@@ -20,7 +20,7 @@ class Usuario < ApplicationRecord
   def avatar_perfil
     if foto_perfil.attached?
       foto_perfil
-    elsif not imagen_perfil.empty?
+    elsif imagen_perfil.present? and not imagen_perfil.empty?
       imagen_perfil
     else
       'https://www.computerhope.com/jargon/g/guest-user.jpg'
