@@ -7,7 +7,7 @@
 <div class="bigDiv" style="height:280px;width:900px;padding:5px 5px 5px 5px;">
 
   <div class="creadorTurno">
-    <img src=<%= @turno.usuario.imagen_perfil %>  width="150" height="150" style="border-radius:50%;box-shadow:5px 5px;margin-bottom:5px;">  
+    <%= image_tag @turno.usuario.avatar_perfil, width:"150", height:"150", style:"border-radius:50%;box-shadow:5px 5px;margin-bottom:5px;" %>  
     <p style="float:center;">  Creador: <%= @turno.usuario.nombre %></p>
     <%= button_to "Ver sus reseñas", resenas_path(@turno.usuario_id), method: :get , class: "link"%>
 
@@ -81,7 +81,7 @@
       <% @turno.solicituds.each do |solicitud| %>
         <% if solicitud.descripcion == "Aceptada" %>
           <li>
-          <img src=<%= solicitud.usuario.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <%= "#{solicitud.usuario.nombre}" %>
+          <%= image_tag solicitud.usuario.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;"%> <%= "#{solicitud.usuario.nombre}" %>
           <% if current_usuario.present? %>
             <% if solicitud.usuario.id == current_usuario.id %>
               <div class="salirDelTurno">
@@ -108,7 +108,7 @@
     <% @turno.solicituds.each do |solicitud| %>
       <% if solicitud.descripcion == "Pendiente" %>
         <li>
-        Solicitud de <img src=<%= solicitud.usuario.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <%= "#{solicitud.usuario.nombre}" %>
+        Solicitud de <%= image_tag solicitud.usuario.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;"%> <%= "#{solicitud.usuario.nombre}" %>
         <% if current_usuario.present? %>
           <% if solicitud.usuario.id == current_usuario.id %>
             <div style="display: inline-block;">
@@ -136,7 +136,7 @@
       <% @turno.solicituds.each do |solicitud| %>
         <% if solicitud.descripcion == "Rechazada" %>
           <li>
-          <img src=<%= solicitud.usuario.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <%= "#{solicitud.usuario.nombre}" %>
+          <%= image_tag solicitud.usuario.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;"%> <%= "#{solicitud.usuario.nombre}" %>
           <% if current_usuario.present? %>
             <% if solicitud.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">

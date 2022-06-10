@@ -7,7 +7,6 @@ class Usuario < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :direccion, presence: true
   validates :nombre, presence: true
-  validates :imagen_perfil, presence: true
   validates :telefono, format: { with: /[0-9]{9}/ }
 
   has_many :turnos
@@ -15,6 +14,18 @@ class Usuario < ApplicationRecord
   has_many :mensajes
   has_many :resenas, class_name: 'Resena', foreign_key: :usuario_id
   has_many :resenas_escritas, class_name: 'Resena', foreign_key: :autor_id
+
+  has_one_attached :foto_perfil
+
+  def avatar_perfil
+    if foto_perfil.attached?
+      foto_perfil
+    elsif not imagen_perfil.empty?
+      imagen_perfil
+    else
+      'https://www.computerhope.com/jargon/g/guest-user.jpg'
+    end
+  end
 
   def to_s
     "[#{id}] #{nombre} (#{email})"

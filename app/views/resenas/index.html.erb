@@ -9,7 +9,7 @@
             <div style="background-color:white;border-radius:15px;border:1px solid black;width:95%;">
             <p>• Calificación: <%= resena.calificacion %></p>
             <p>• Descripción: <%= resena.contenido %></p> <br/>
-            <p>Creada por:</p> <img src=<%= resena.autor.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <p style="display:inline-block;"><%= resena.autor.nombre %></p><br>
+            <p>Creada por:</p> <%= image_tag resena.autor.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;" %> <p style="display:inline-block;"><%= resena.autor.nombre %></p><br>
             <% if resena.autor_id == current_usuario.id %>
               <div>
                 <%= link_to "Eliminar reseña", resena_path(@usuario.id, resena.id), method: :delete, class: "link" %>

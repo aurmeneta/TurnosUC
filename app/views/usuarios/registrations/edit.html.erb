@@ -6,7 +6,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "usuarios/shared/error_messages", resource: resource %>
 
-  <img src=<%= resource.imagen_perfil %>  width="150" height="150" style="border-radius:50%;box-shadow:5px 5px;margin-bottom:5px;">
+  <%= image_tag(resource.avatar_perfil, width: "150", height: "150", style: "border-radius:50%;box-shadow:5px 5px;margin-bottom:5px;") %>
 
   <br>
 
@@ -35,8 +35,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :URL_foto_perfil%><br />
-    <%= f.url_field :imagen_perfil, required: true %>
+    <%= f.label :foto_perfil%><br />
+    <%= f.file_field :foto_perfil %>
   </div>
 
   <div class="field">
