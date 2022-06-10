@@ -29,12 +29,14 @@ RSpec.describe 'Turnos', type: :request do
       sign_in turno.usuario
       expect do
         post '/turnos/', params: {
-          fecha: turno.fecha,
-          direccion_salida: turno.direccion_salida,
-          comuna: turno.comuna,
-          tipo: turno.tipo,
-          cupos: turno.cupos,
-          campus: turno.campus
+          turno: {
+            fecha: turno.fecha,
+            direccion_salida: turno.direccion_salida,
+            comuna: turno.comuna,
+            tipo: turno.tipo,
+            cupos: turno.cupos,
+            campus: turno.campus
+          }
         }
       end.to change(Turno, :count).by(1)
     end

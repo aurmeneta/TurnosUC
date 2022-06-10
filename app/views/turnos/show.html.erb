@@ -89,7 +89,7 @@
       <% @turno.solicituds.each do |solicitud| %>
         <% if solicitud.descripcion == "Aceptada" %>
           <li>
-          <img src=<%= solicitud.usuario.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <%= "#{solicitud.usuario.nombre}" %>
+          <%= image_tag solicitud.usuario.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;"%> <%= "#{solicitud.usuario.nombre}" %>
           <% if current_usuario.present? %>
             <% if solicitud.usuario.id == current_usuario.id %>
               <div class="salirDelTurno">
@@ -116,7 +116,7 @@
     <% @turno.solicituds.each do |solicitud| %>
       <% if solicitud.descripcion == "Pendiente" %>
         <li>
-        Solicitud de <img src=<%= solicitud.usuario.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <%= "#{solicitud.usuario.nombre}" %>
+        Solicitud de <%= image_tag solicitud.usuario.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;"%> <%= "#{solicitud.usuario.nombre}" %>
         <% if current_usuario.present? %>
           <% if solicitud.usuario.id == current_usuario.id %>
             <div style="display: inline-block;">
@@ -144,7 +144,7 @@
       <% @turno.solicituds.each do |solicitud| %>
         <% if solicitud.descripcion == "Rechazada" %>
           <li>
-          <img src=<%= solicitud.usuario.imagen_perfil %>  width="30" height="30" style="border-radius:50%;border:1px solid black;display:inline-block;"> <%= "#{solicitud.usuario.nombre}" %>
+          <%= image_tag solicitud.usuario.avatar_perfil, width:"30", height:"30", style:"border-radius:50%;border:1px solid black;display:inline-block;"%> <%= "#{solicitud.usuario.nombre}" %>
           <% if current_usuario.present? %>
             <% if solicitud.usuario.id == current_usuario.id %>
               <div style="display: inline-block;">
