@@ -14,17 +14,22 @@ class Usuario < ApplicationRecord
   has_many :mensajes
   has_many :resenas, class_name: 'Resena', foreign_key: :usuario_id
   has_many :resenas_escritas, class_name: 'Resena', foreign_key: :autor_id
+  has_many :notificaciones, class_name: 'Notificacion'
 
   has_one_attached :foto_perfil
 
   def avatar_perfil
     if foto_perfil.attached?
       foto_perfil
-    elsif imagen_perfil.present? and not imagen_perfil.empty?
+    elsif imagen_perfil.present? && !imagen_perfil.empty?
       imagen_perfil
     else
       'https://www.computerhope.com/jargon/g/guest-user.jpg'
     end
+  end
+
+  def notificaciones_nuevas
+    notificaciones.where(visto: false)
   end
 
   def to_s

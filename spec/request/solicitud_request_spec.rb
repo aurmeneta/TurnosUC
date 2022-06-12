@@ -5,19 +5,34 @@ require 'rails_helper'
 RSpec.describe 'Solicituds', type: :request do
   let!(:usuario) { create(:usuario) }
   let!(:segundo_usuario) { create(:usuario) }
-  let!(:turno) { create(:turno) }
+  let!(:turno) { create(:turno, usuario_id: usuario.id) }
   let!(:solicitud) { create(:solicitud) }
   let!(:segunda_solicitud) { create(:solicitud) }
 
   before(:each) do
-    sign_in usuario
+    sign_in segundo_usuario
   end
 
   describe 'create solicitud' do
     it 'should create a new solicitud' do
       expect do
-        post '/solicituds/create', params: { turno_id: turno.id }
+        post new_solicitud_path, params: { turno_id: turno.id }
       end.to change(Solicitud, :count).by(1)
+    end
+
+    it 'should not create a new solicitud if usuario already has one' do
+      post new_solicitud_path, params: { turno_id: turno.id }
+
+      expect do
+        post new_solicitud_path, params: { turno_id: turno.id }
+      end.to change(Solicitud, :count).by(0)
+    end
+
+    it 'should not create a new solicitud if usuario y publisher of the turno' do
+      sign_in usuario
+      expect do
+        post new_solicitud_path, params: { turno_id: turno.id }
+      end.to change(Solicitud, :count).by(0)
     end
   end
 

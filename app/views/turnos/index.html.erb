@@ -1,3 +1,30 @@
+<% if current_usuario %>
+  <div class="publicaciones">
+    Notificaciones:
+
+    <% if current_usuario.notificaciones_nuevas.empty? %>
+      No hay notificaciones nuevas
+    <% else %>
+      <ul>
+        <% current_usuario.notificaciones_nuevas.each do |notificacion| %>
+          <li>
+            <%= notificacion %>
+            <br>
+            <div style="display: inline-block;">
+              <%= button_to 'Ver turno', notificacion.turno, method: :get, class: 'link' %>
+            </div>
+            <div style="display: inline-block;">
+               <%= button_to 'Descartar notificacion', dismiss_notificacion_path(notificacion), class: 'link' %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end%>
+
+<br>
+
 <div class="buscarTurno">
   <h1>Busca un turno:</h1>
 </div>

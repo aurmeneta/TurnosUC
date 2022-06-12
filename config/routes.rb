@@ -35,4 +35,6 @@ Rails.application.routes.draw do
   get 'resenas/:usuario_id/:resena_id/edit', to: 'resenas#edit', as: :edit_resena
   patch 'resenas/:usuario_id/:resena_id', to: 'resenas#update'
   delete 'resenas/:usuario_id/:resena_id', to: 'resenas#delete'
+
+  post 'notificaciones/descartar/:notificacion_id', to: 'notificaciones#dismiss', as: :dismiss_notificacion
 end
