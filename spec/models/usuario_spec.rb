@@ -22,11 +22,6 @@ RSpec.describe Usuario, type: :model do
     expect(@usuario).not_to be_valid
   end
 
-  it 'is not valid without a profile picture' do
-    @usuario.imagen_perfil = nil
-    expect(@usuario).not_to be_valid
-  end
-
   it 'is not valid without a phone number' do
     @usuario.telefono = nil
     expect(@usuario).not_to be_valid

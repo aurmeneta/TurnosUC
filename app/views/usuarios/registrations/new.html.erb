@@ -27,8 +27,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :URL_foto_perfil%><br />
-    <%= f.url_field :imagen_perfil, required: true %>
+    <%= f.label :foto_perfil%><br />
+    <%= f.file_field :foto_perfil %>
   </div>
 
   <div class="field">
@@ -59,4 +59,3 @@
 <div class="smallButton">
   <%= link_to "Volver", root_path, class: "link" %>
 </div>
-
