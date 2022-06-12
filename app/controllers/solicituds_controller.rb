@@ -6,6 +6,8 @@ class SolicitudsController < ApplicationController
 
     if turno.usuario.id == current_usuario.id
       redirect_to turno, alert: 'No puedes solicitar un cupo en tu propio turno'
+    elsif turno.usuario_solicito? current_usuario
+      redirect_to turno, alert: 'Ya enviaste una solicitud a este turno'
     else
       @solicitud = Solicitud.new(
         descripcion: 'Pendiente',

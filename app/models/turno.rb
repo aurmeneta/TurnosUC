@@ -30,6 +30,10 @@ class Turno < ApplicationRecord
     end
   end
 
+  def usuario_solicito? (usuario)
+    not solicituds.where(usuario_id: usuario.id).empty?
+  end
+
   def hora_llegada
     url_maps = "https://maps.googleapis.com/maps/api/directions/json?key=#{ENV["GMAPS_KEY"]}"
 
