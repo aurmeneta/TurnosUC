@@ -31,6 +31,26 @@
 
 <br>
 
+
+<div class="bigDiv" style="width:400px;">
+<%= form_for "", url: root_path, method: :get do |f| %>
+
+    <br/>
+    <%= f.label :campus_filtro %>
+    <%= f.select :campus_filtro, ["-","San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"] %>
+
+    <br/>
+    <%= f.label :fecha_filtro %>
+    <%= f.date_field :fecha_filtro %><br>
+
+    <div style="text-align:center">
+    <%= f.submit "Filtrar turnos", class: "link" %>
+    </div>
+<% end %>
+</div>
+
+
+
 <div class="publicaciones">
   <p>Turnos de ida:</p>
   <ul>
