@@ -1,5 +1,5 @@
 <div class="bigDiv" style="width:260px;">
-  <h1><p><%= image_tag("icono.png", size: "30x30") %>‏‎ Turno <%= @turno.id %></h1>
+  <h1><p><%= image_tag("icono.png", size: "45x45") %>‏‎ Turno <%= @turno.id %></h1>
 </div>
 
 <br/>
@@ -88,7 +88,7 @@
 
 <br>
 
-<div class="bigDiv" style="width:570px;">
+<div class="bigDiv" style="width:650px;">
 <p>Aceptados:</p>
   <ul>
       <% @turno.solicituds.each do |solicitud| %>
@@ -184,7 +184,7 @@
     <ul>
       <% @turno.mensajes.order(:updated_at).each do |mensaje| %>
        <div class="mensajeChat">
-        <p><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></p>
+        <span><%= "#{mensaje.updated_at.localtime.strftime('<%d/%m/%y %H:%M>')} #{mensaje.usuario.nombre}: #{mensaje.contenido}" %></span>
        </div>
       <% end %>
     <ul>

@@ -1,6 +1,6 @@
 <% if current_usuario %>
-  <div class="publicaciones">
-    Notificaciones:
+  <div class="publicaciones" style="float:right;width:20%;vertical-align:top;padding: 10px 10px 10px 10px;">
+    <%= image_tag("notificacion.png", size: "30x30") %> <b>Notificaciones:</b>
 
     <% if current_usuario.notificaciones_nuevas.empty? %>
       No hay notificaciones nuevas
@@ -8,6 +8,7 @@
       <ul>
         <% current_usuario.notificaciones_nuevas.each do |notificacion| %>
           <li>
+          <hr>
             <%= notificacion %>
             <br>
             <div style="display: inline-block;">
@@ -16,12 +17,13 @@
             <div style="display: inline-block;">
                <%= button_to 'Descartar notificacion', dismiss_notificacion_path(notificacion), class: 'link' %>
             </div>
+          <hr>
           </li>
         <% end %>
       </ul>
     <% end %>
   </div>
-<% end%>
+<% end %>
 
 <br>
 
@@ -31,25 +33,24 @@
 
 <br>
 
+<div style="padding:10px 10px 10px 10px;">
+  <button type="button" class="collapsible" style="float:left">Filtrar turnos:</button>
+  <div class="bigDiv" style="width:20%;float:left;display:none;">
+    <%= form_for "", url: root_path, method: :get do |f| %>
+      <br/>
+      <%= f.label :campus %>
+      <%= f.select :campus_filtro, ["-","San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"] %>
 
-<div class="bigDiv" style="width:400px;">
-<%= form_for "", url: root_path, method: :get do |f| %>
+      <br/><br>
+      <%= f.label :fecha %>
+      <%= f.date_field :fecha_filtro %><br><br>
 
-    <br/>
-    <%= f.label :campus_filtro %>
-    <%= f.select :campus_filtro, ["-","San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"] %>
-
-    <br/>
-    <%= f.label :fecha_filtro %>
-    <%= f.date_field :fecha_filtro %><br>
-
-    <div style="text-align:center">
-    <%= f.submit "Filtrar turnos", class: "link" %>
-    </div>
-<% end %>
+      <div style="text-align:center">
+      <%= f.submit "Filtrar", class: "link" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-
 
 <div class="publicaciones">
   <p>Turnos de ida:</p>
@@ -75,8 +76,27 @@
   </ul>
 </div>
 
+
+
 <br>
 
 <div class="smallButton">
   <%= link_to "Crear turno", new_turno_path, class: "link" %>
 </div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>

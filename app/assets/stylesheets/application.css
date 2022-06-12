@@ -167,6 +167,7 @@ p {
   font-weight:bold;
   vertical-align:middle;
   margin-bottom: 5px;
+  border-radius:15px;
 }
 
 .linkverde {
@@ -175,6 +176,7 @@ p {
   color:green;
   font-weight:bold;
   vertical-align:middle;
+  border-radius:15px;
 }
 
 .linkSolicitar {
@@ -183,6 +185,7 @@ p {
   color:green;
   font-weight:bold;
   vertical-align:middle;
+  border-radius: 20px;
 }
 
 
@@ -193,6 +196,8 @@ p {
   height:auto;
   width:90%;
   background-color:#FFFFFF;
+  padding: 5px 5px 5px 5px;
+  margin-bottom:3px;
 }
 
 .salirDelTurno {
@@ -201,6 +206,16 @@ p {
   border-radius:15px;
   padding:5px 5px 5px 5px;
   margin-left:2px;
+}
+
+.collapsible {
+  font-family:Cambria,Georgia,serif;
+  font-size:15px;
+  color:#065472;
+  font-weight:bold;
+  vertical-align:middle;
+  margin-bottom: 5px;
+  border-radius:15px;
 }
 
 
