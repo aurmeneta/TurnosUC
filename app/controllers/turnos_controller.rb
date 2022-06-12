@@ -17,7 +17,7 @@ class TurnosController < ApplicationController
 
     respond_to do |format|
       if @turno.save
-        format.html { redirect_to turno_url(@turno), notice: "Se creó el turno" }
+        format.html { redirect_to turno_url(@turno), notice: 'Se creó el turno' }
       else
         format.html { render :new, status: 422 }
       end
@@ -66,6 +66,6 @@ class TurnosController < ApplicationController
   private
 
   def turno_params
-    params.require(:turno).permit([:fecha, :direccion_salida, :comuna, :campus, :tipo, :cupos, :hora_salida, :dia, :usuario_id])
+    params.require(:turno).permit(%i[fecha direccion_salida comuna campus tipo cupos hora_salida dia usuario_id])
   end
 end

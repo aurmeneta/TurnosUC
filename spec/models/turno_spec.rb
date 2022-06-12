@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe Turno, type: :model do
-  let(:usuario) { create(:usuario)}
+  let(:usuario) { create(:usuario) }
   before(:each) do
     @turno = Turno.new(id: 1, fecha: Faker::Date.forward, direccion_salida: Faker::Address.street_address, comuna: Faker::Address.city,
                        tipo: 'Ida', cupos: 4, campus: 'San Joaquín', created_at: nil, updated_at: nil, usuario_id: usuario.id)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Notificacion < ApplicationRecord
   self.table_name = 'notificaciones'
 

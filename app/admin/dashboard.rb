@@ -1,9 +1,10 @@
 # frozen_string_literal: true
-ActiveAdmin.register_page "Dashboard" do
-  menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
-  content title: proc { I18n.t("active_admin.dashboard") } do
-    columns do 
+ActiveAdmin.register_page 'Dashboard' do
+  menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
+
+  content title: proc { I18n.t('active_admin.dashboard') } do
+    columns do
       column do
         panel 'Turnos recientes' do
           ul do
@@ -25,7 +26,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    columns do 
+    columns do
       column do
         panel 'Últimas solicitudes' do
           ul do
@@ -47,28 +48,27 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    columns do
+      column do
+        panel 'Usuarios' do
+          ul do
+            Usuario.all.order(:id).map do |usuario|
+              li link_to(usuario, admin_usuario_path(usuario))
+            end
+          end
+        end
+      end
 
-  columns do
-    column do
-      panel 'Usuarios' do
-        ul do
-          Usuario.all.order(:id).map do |usuario|
-            li link_to(usuario, admin_usuario_path(usuario))
+      column do
+        panel 'Últimas notificaciones' do
+          ul do
+            Notificacion.order(created_at: :desc).limit(10).map do |notificacion|
+              li link_to("[#{notificacion.id}] #{notificacion}", admin_notificacion_path(notificacion))
+            end
           end
         end
       end
     end
-
-    column do
-      panel 'Últimas notificaciones' do
-        ul do
-          Notificacion.order(created_at: :desc).limit(10).map do |notificacion|
-            li link_to("[#{notificacion.id}] #{notificacion}", admin_notificacion_path(notificacion))
-          end
-        end
-      end
-    end
-  end
 
     # Here is an example of a simple dashboard with columns and panels.
     #
@@ -89,5 +89,5 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
-  end # content
+  end
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'uri'
 require 'net/http'
 
@@ -14,9 +15,7 @@ class Turno < ApplicationRecord
   validate :fecha_must_be_in_the_future
 
   def fecha_must_be_in_the_future
-    if fecha.present? and fecha < Time.now
-      errors.add :fecha, 'no puede ser en el pasado'
-    end
+    errors.add :fecha, 'no puede ser en el pasado' if fecha.present? && (fecha < Time.now)
   end
 
   def usuario_en_turno(id_usuario)
@@ -30,24 +29,24 @@ class Turno < ApplicationRecord
     end
   end
 
-  def usuario_solicito? (usuario)
-    not solicituds.where(usuario_id: usuario.id).empty?
+  def usuario_solicito?(usuario)
+    !solicituds.where(usuario_id: usuario.id).empty?
   end
 
   def hora_llegada
-    url_maps = "https://maps.googleapis.com/maps/api/directions/json?key=#{ENV["GMAPS_KEY"]}"
+    url_maps = "https://maps.googleapis.com/maps/api/directions/json?key=#{ENV['GMAPS_KEY']}"
 
-    if tipo == 'Ida'
-      url_maps += "&origin=#{direccion_salida},#{comuna}&destination=Campus #{campus} UC"
-    else
-      url_maps += "&origin=Campus #{campus} UC&destination=#{direccion_salida},#{comuna}"
-    end
+    url_maps += if tipo == 'Ida'
+                  "&origin=#{direccion_salida},#{comuna}&destination=Campus #{campus} UC"
+                else
+                  "&origin=Campus #{campus} UC&destination=#{direccion_salida},#{comuna}"
+                end
 
-    if fecha and fecha > Time.now
-      url_maps += "&departure_time=#{fecha.to_i}"
-    else
-      url_maps += "&departure_time=now"
-    end
+    url_maps += if fecha && (fecha > Time.now)
+                  "&departure_time=#{fecha.to_i}"
+                else
+                  '&departure_time=now'
+                end
 
     uri = URI(URI.encode(url_maps))
     http_response = Net::HTTP.get_response(uri)
@@ -58,14 +57,13 @@ class Turno < ApplicationRecord
         duracion_texto = response['routes'].first['legs'].first['duration_in_traffic']['text']
         duracion_segundos = response['routes'].first['legs'].first['duration_in_traffic']['value']
 
-        if fecha and fecha > Time.now
+        if fecha && (fecha > Time.now)
           (fecha + duracion_segundos).strftime('%H:%M') + " (#{duracion_texto} de viaje)"
         else
-          duracion_texto + ' de viaje'
+          "#{duracion_texto} de viaje"
         end
-
-      rescue => exception
-        puts 'Error en google maps', http_response.body, exception
+      rescue StandardError => e
+        puts 'Error en google maps', http_response.body, e
         'No se pudo estimar la duración del viaje'
       end
     else
@@ -75,7 +73,7 @@ class Turno < ApplicationRecord
   end
 
   def to_s
-    if fecha and tipo == 'Ida'
+    if fecha && (tipo == 'Ida')
       "#{I18n.l(fecha, format: '<%a %d/%m %H:%M>')} Turno ##{id} de #{direccion_salida}, #{comuna} a #{campus}"
     elsif fecha
       "#{I18n.l(fecha, format: '<%a %d/%m %H:%M>')} Turno ##{id} de #{campus} a #{direccion_salida}, #{comuna}"
