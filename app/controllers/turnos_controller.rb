@@ -4,7 +4,20 @@ class TurnosController < ApplicationController
   skip_before_action :authenticate_usuario!, only: :index
 
   def index
-    @turnos = Turno.all
+    if params[:campus_filtro] && params[:campus_filtro] != "-" && params[:fecha_filtro] != ""
+      fecha = params[:fecha_filtro].to_date
+      @turnos = Turno.where(:campus => params[:campus_filtro]).where("fecha BETWEEN ? AND ?",fecha, fecha.tomorrow)
+
+    elsif params[:campus_filtro] && params[:campus_filtro] != "-" && params[:fecha_filtro] == ""
+      @turnos = Turno.where(:campus => params[:campus_filtro])
+    
+    elsif params[:campus_filtro] == "-" && params[:fecha_filtro] != ""
+      fecha = params[:fecha_filtro].to_date
+      @turnos = Turno.where("fecha BETWEEN ? AND ?",fecha, fecha.tomorrow)
+    
+    else
+      @turnos = Turno.all
+    end
   end
 
   def new
