@@ -1,5 +1,5 @@
 <% if current_usuario %>
-  <div class="publicaciones" style="float:right;width:20%;vertical-align:top;padding: 10px 10px 10px 10px;">
+  <div class="publicaciones" style="float:right;width:20%;vertical-align:top;padding: 10px 10px 10px 10px;margin-right:15px;">
     <%= image_tag("notificacion.png", size: "30x30") %> <b>Notificaciones:</b>
 
     <% if current_usuario.notificaciones_nuevas.empty? %>
