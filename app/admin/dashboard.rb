@@ -58,6 +58,16 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
+
+    column do
+      panel 'Últimas notificaciones' do
+        ul do
+          Notificacion.order(created_at: :desc).limit(10).map do |notificacion|
+            li link_to("[#{notificacion.id}] #{notificacion}", admin_notificacion_path(notificacion))
+          end
+        end
+      end
+    end
   end
 
     # Here is an example of a simple dashboard with columns and panels.
