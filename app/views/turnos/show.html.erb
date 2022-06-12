@@ -1,5 +1,5 @@
 <div class="bigDiv" style="width:260px;">
-  <h1>Turno <%= @turno.id %></h1>
+  <h1><p><%= image_tag("icono.png", size: "30x30") %>‏‎ Turno <%= @turno.id %></h1>
 </div>
 
 <br/>
@@ -36,9 +36,22 @@
   <br>
   <br>
 
-  <div style="text-align:center;">
-    <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "linkSolicitar" %>
-  </div>
+  <% x = 0 %>
+  <% @turno.solicituds.each do |solicitud| %>
+      <% if solicitud.descripcion == "Aceptada" %>
+        <% x = x + 1 %>
+      <% end %>
+  <% end %>
+  <% if x < @turno.cupos && @turno.usuario.id != current_usuario.id && !@turno.usuario_solicito?(current_usuario) %>
+    <div style="text-align:center;">
+      <%= button_to "Solicitar turno", new_solicitud_path, params: {turno_id: @turno.id}, class: "linkSolicitar" %>
+    </div>
+  <% end %>
+  <% if !(x < @turno.cupos) %>
+    <div style="text-align:center;">
+      <p style="font-weight:bold;"> No hay más cupos disponibles </p>
+    </div>
+  <% end %>
 </div>
 
 
@@ -165,7 +178,7 @@
   <% if @turno.usuario_en_turno(current_usuario.id)  %>
    <div class="bigDiv" style="border-radius:15px;width:450px;">
     <%= image_tag("mensaje.png", size: "60x60") %>
-    <p style="font-size:30px;display:inline-block;"><b>Ride chat </b></p>
+    <p style="font-size:30px;display:inline-block;"><b>Chat</b></p>
     <hr>
 
     <ul>
