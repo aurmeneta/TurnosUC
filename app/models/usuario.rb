@@ -14,6 +14,7 @@ class Usuario < ApplicationRecord
   has_many :mensajes
   has_many :resenas, class_name: 'Resena', foreign_key: :usuario_id
   has_many :resenas_escritas, class_name: 'Resena', foreign_key: :autor_id
+  has_many :notificaciones, class_name: 'Notificacion'
 
   has_one_attached :foto_perfil
 
@@ -25,6 +26,10 @@ class Usuario < ApplicationRecord
     else
       'https://www.computerhope.com/jargon/g/guest-user.jpg'
     end
+  end
+
+  def notificaciones_nuevas
+    notificaciones.where(visto: false)
   end
 
   def to_s

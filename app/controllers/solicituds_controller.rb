@@ -15,6 +15,13 @@ class SolicitudsController < ApplicationController
         turno_id: turno.id
       )
       @solicitud.save
+
+      Notificacion.new(
+        contenido: "#{current_usuario.nombre} envió una solicitud",
+        turno_id: turno.id,
+        usuario_id: turno.usuario.id
+      ).save
+
       redirect_to turno
     end
   end
@@ -49,8 +56,18 @@ class SolicitudsController < ApplicationController
     solicitud = Solicitud.find(params[:id])
 
     if solicitud.turno.usuario.id == current_usuario.id
-      solicitud.update(descripcion: 'Aceptada')
-      redirect_to solicitud.turno
+      if solicitud.update(descripcion: 'Aceptada')
+
+        Notificacion.new(
+          contenido: "#{solicitud.turno.usuario.nombre} aceptó tu solicitud",
+          turno_id: solicitud.turno.id,
+          usuario_id: solicitud.usuario.id
+        ).save
+
+        redirect_to solicitud.turno
+      else
+        redirect_to solicitud.turno, alert: 'No se pudo aceptar la solicitud'
+      end
     else
       redirect_to solicitud.turno, alert: 'Solo el creador del turno puede aceptar/rechazar solicitudes'
     end
@@ -60,8 +77,17 @@ class SolicitudsController < ApplicationController
     solicitud = Solicitud.find(params[:id])
 
     if solicitud.turno.usuario.id == current_usuario.id
-      solicitud.update(descripcion: 'Rechazada')
-      redirect_to solicitud.turno
+      if solicitud.update(descripcion: 'Rechazada')
+        Notificacion.new(
+          contenido: "#{solicitud.turno.usuario.nombre} rechazó tu solicitud",
+          turno_id: solicitud.turno.id,
+          usuario_id: solicitud.usuario.id
+        ).save
+
+        redirect_to solicitud.turno
+      else
+        redirect_to solicitud.turno, alert: 'No se pudo rechazar la solicitud'
+      end
     else
       redirect_to solicitud.turno, alert: 'Solo el creador del turno puede aceptar/rechazar solicitudes'
     end

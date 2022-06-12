@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_10_193811) do
+ActiveRecord::Schema.define(version: 2022_06_12_034151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2022_06_10_193811) do
     t.bigint "turno_id"
     t.index ["turno_id"], name: "index_mensajes_on_turno_id"
     t.index ["usuario_id"], name: "index_mensajes_on_usuario_id"
+  end
+
+  create_table "notificaciones", force: :cascade do |t|
+    t.string "contenido"
+    t.boolean "visto", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "usuario_id"
+    t.bigint "turno_id"
+    t.index ["turno_id"], name: "index_notificaciones_on_turno_id"
+    t.index ["usuario_id"], name: "index_notificaciones_on_usuario_id"
   end
 
   create_table "resenas", force: :cascade do |t|
@@ -114,6 +125,8 @@ ActiveRecord::Schema.define(version: 2022_06_10_193811) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "mensajes", "turnos", on_delete: :cascade
   add_foreign_key "mensajes", "usuarios", on_delete: :cascade
+  add_foreign_key "notificaciones", "turnos", on_delete: :cascade
+  add_foreign_key "notificaciones", "usuarios", on_delete: :cascade
   add_foreign_key "resenas", "usuarios", column: "autor_id", on_delete: :cascade
   add_foreign_key "resenas", "usuarios", on_delete: :cascade
   add_foreign_key "solicituds", "turnos", on_delete: :cascade
