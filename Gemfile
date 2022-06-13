@@ -68,3 +68,5 @@ gem 'factory_bot'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 
 gem 'activeadmin', '~> 2.12'
+
+gem "aws-sdk-s3", "~> 1.114"
