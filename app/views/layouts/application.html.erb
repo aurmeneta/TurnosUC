@@ -38,7 +38,7 @@
         <div class="navButton">
           <%= link_to "Mi perfil", edit_usuario_registration_path, class: "link" %>
         </div>
-        <% if current_usuario.email == "admin@email.com" %>
+        <% if current_usuario.admin %>
           <div class="navButton">
             <%= link_to "Admin Panel", admin_root_path, class: "link" %>
           </div>
