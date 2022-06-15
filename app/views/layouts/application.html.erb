@@ -60,8 +60,16 @@
 
     <br> 
     
-    <p class="notice" style="text-align:center;"><%= notice %></p>
-    <p class="alert" style="text-align:center;"><%= alert %></p>
+    <% if notice || alert %>
+      <div style="background-color:#E6F2F7;border-radius:15px;border:3px solid black;width:500px;margin:auto;padding: 10px;">
+        <p style="text-align:center;">
+          <%= notice %>
+          <%= alert %>
+        </p>
+      </div>
+      <br>
+      <br>
+    <% end %>
 
 
     <%= yield %>

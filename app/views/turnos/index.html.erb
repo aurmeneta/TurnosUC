@@ -1,3 +1,4 @@
+<%# Notificaciones %>
 <% if current_usuario %>
   <div class="publicaciones" style="float:right;width:20%;vertical-align:top;padding: 10px 10px 10px 10px;margin-right:15px;">
     <%= image_tag("notificacion.png", size: "30x30") %> <b>Notificaciones:</b>
@@ -12,7 +13,7 @@
             <%= notificacion %>
             <br>
             <div style="display: inline-block;">
-              <%= button_to 'Ver turno', notificacion.turno, method: :get, class: 'link' %>
+             % <%= button_to 'Ver turno', notificacion.turno, method: :get, class: 'link' %>
             </div>
             <div style="display: inline-block;">
                <%= button_to 'Descartar notificacion', dismiss_notificacion_path(notificacion), class: 'link' %>
@@ -32,18 +33,18 @@
 </div>
 
 <br>
-
+<%# Filtrar Turnos %>
 <div style="padding:10px 10px 10px 10px;">
   <button type="button" class="collapsible" style="float:left">Filtrar turnos:</button>
-  <div class="bigDiv" style="width:20%;display:none;">
+  <div class="bigDiv" style=<%="width:530px;display:#{if @filtrado then 'block' else 'none' end};"%>>
     <%= form_for "", url: root_path, method: :get do |f| %>
       <br/>
-      <%= f.label :campus %><br>
-      <%= f.select :campus_filtro, ["-","San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"] %>
+      <%= f.label :campus %>
+      <%= f.select :campus_filtro, ["-","San Joaquín", "Casa Central", "Oriente", "Lo Contador", "Villarrica"], selected: @campus_filtro %>
 
       <br/><br>
       <%= f.label :fecha %>
-      <%= f.date_field :fecha_filtro %><br><br>
+      <%= f.date_field :fecha_filtro, value: @fecha_filtro %><br><br>
 
       <div style="text-align:center">
       <%= f.submit "Filtrar", class: "link" %>
@@ -52,26 +53,24 @@
   </div>
 </div>
 
+<%# Mostrar Turnos de Ida%>
 <div class="publicaciones">
   <p>Turnos de ida:</p>
   <ul>
-    <% @turnos.each do |turno| %>
-      <% if turno.tipo == "Ida" %> 
-        <p><%= image_tag("icono.png", size: "30x30") %>‏‎ <%= link_to turno, turno_path(turno.id), class: "link" %></p>
-      <% end %>
+    <% @turnos.where(tipo: 'Ida').each do |turno| %>
+      <p><%= image_tag("icono.png", size: "30x30") %>‏‎ <%= link_to turno, turno_path(turno.id), class: "link" %></p>
     <% end %>
   </ul>
 </div>
 
 <br>
 
+<%# Mostrar Turnos de Vuelta %>
 <div class="publicaciones">
   <p>Turnos de vuelta:</p>
   <ul>
-    <% @turnos.each do |turno| %>
-      <% if turno.tipo == "Vuelta" %>
-        <p><%= image_tag("icono.png", size: "30x30") %>‏‎ <%= link_to turno, turno_path(turno.id), class: "link" %></p>
-      <% end %>
+    <% @turnos.where(tipo: 'Vuelta').each do |turno| %>
+      <p><%= image_tag("icono.png", size: "30x30") %>‏‎ <%= link_to turno, turno_path(turno.id), class: "link" %></p>
     <% end %>
   </ul>
 </div>

@@ -4,20 +4,27 @@ class TurnosController < ApplicationController
   skip_before_action :authenticate_usuario!, only: :index
 
   def index
-    if params[:campus_filtro] && params[:campus_filtro] != '-' && params[:fecha_filtro] != ''
-      fecha = params[:fecha_filtro].to_date
-      @turnos = Turno.where(campus: params[:campus_filtro]).where('fecha BETWEEN ? AND ?', fecha, fecha.tomorrow)
+    campus_filtro = params[:campus_filtro]
+    fecha_filtro = params[:fecha_filtro]
 
-    elsif params[:campus_filtro] && params[:campus_filtro] != '-' && params[:fecha_filtro] == ''
-      @turnos = Turno.where(campus: params[:campus_filtro])
+    if campus_filtro && campus_filtro != '-' && fecha_filtro != ''
+      fecha = fecha_filtro.to_date
+      @turnos = Turno.where(campus: campus_filtro).where('fecha BETWEEN ? AND ?', fecha, fecha.tomorrow)
 
-    elsif params[:campus_filtro] == '-' && params[:fecha_filtro] != ''
-      fecha = params[:fecha_filtro].to_date
+    elsif campus_filtro && campus_filtro != '-' && fecha_filtro == ''
+      @turnos = Turno.where(campus: campus_filtro)
+
+    elsif campus_filtro == '-' && fecha_filtro != ''
+      fecha = fecha_filtro.to_date
       @turnos = Turno.where('fecha BETWEEN ? AND ?', fecha, fecha.tomorrow)
 
     else
       @turnos = Turno.all
     end
+
+    @filtrado = (campus_filtro != '-' && campus_filtro) || (fecha_filtro != '-' && fecha_filtro)
+    @campus_filtro = campus_filtro
+    @fecha_filtro = fecha_filtro
   end
 
   def new
