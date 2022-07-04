@@ -4,6 +4,6 @@
 
 <hr>
 
-* Panel Admin: https://iic2143-grupo13.herokuapp.com/admin
-* Usuario: admin@email.com
-* Clave: 123456
+IIC2143 Software Engineering Class Project.
+
+Developed by Daniel Bravo, Cristóbal Reyes and Andrés Urmeneta.
